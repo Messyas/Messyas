@@ -1,6 +1,6 @@
 #OpenToWork
 
-#### Machine Learning Engineer & Full Stack Developer
+#### Back-End & Machine Learning
 
 Hello, I am a developer who thrives on challenges and is always seeking the most effective approaches to solve complex problems.
 
