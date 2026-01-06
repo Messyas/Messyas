@@ -1,30 +1,23 @@
-#HI
+<p align="center">
+  <img src="spaceking.png" width="100%">
+</p>
 
-## Programming Languages I know
-- C (Better than love)
-- C++ (Ok)
-- JAVA (Darkness romance)
-- PYTHON ( w^w )
-- TYPESCRIPT (Its userfull)
-- JAVASCRIPT (Its here because typescript generates thats shit soohh yah)
-- KOTLIN (Kind like this fellas)
+<h3 align="center">
+  FULL STACK DEV
+</h3>
 
-## In the future
-- C#
-- Rust
-- GO
-- C3
+<p align="center">I enjoy creative things, I look for opportunities to let loose, I like to improve the spaces I'm in, and I love challenges.</p>
 
-##Programmers I like
-- Dan Shiffman ( The Codign Train )
-- Ian Dvorin ( Magicalbat )
-- Javidx9
-- Sebastian Lague
-- JDH
-- Tantan
-- CodeParade
-- Fergus Griggs
-- Matts Ramblings
+<div>
+  <h4 align="center">Languages I know</h4>
+<p align="center">
+  <kbd>C</kbd>
+  <kbd>C++</kbd>
+  <kbd>Java</kbd>
+  <kbd>Kotlin</kbd>
+  <kbd>Python</kbd>
+  <kbd>JavaScript</kbd>
+  <kbd>TypeScript</kbd>
+</p>
+</div>
 
-
-  
