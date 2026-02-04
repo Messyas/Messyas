@@ -2,4 +2,4 @@
 Desenvolvedor de software com foco em Back-end e ML, tenho conhecimento em Java/Spring Boot, Python, JS e TS, microsserviços e AWS.
 
 Estudando RAG e LLMs.
-Brincando com C para me aprofundar em ML em um futuro próximo.
+Brincando com C pra me aprofundar em ML em um futuro próximo.
