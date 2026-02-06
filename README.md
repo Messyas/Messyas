@@ -1,5 +1,3 @@
 ### Greetings
-Desenvolvedor de software com foco em Back-end e ML, tenho conhecimento em Java/Spring Boot, Python, JS e TS, microsserviços e AWS.
+Desenvolvedor de software com foco em Back-end e ML.
 
-Estudando RAG e LLMs.
-Brincando com C pra me aprofundar em ML em um futuro próximo.
