@@ -20,13 +20,15 @@ jobs:
         uses: lowlighter/metrics@latest
         with:
           # Utiliza o token nativo e seguro do GitHub Actions (não expõe credenciais externas)
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Token pessoal com acesso de leitura aos repositórios públicos do perfil.
+          token: ${{ secrets.METRICS_TOKEN }}
           user: ${{ github.repository_owner }}
           template: classic
           base: ""
           config_timezone: America/Manaus
-          config_display: 300
+          config_display: regular
           config_padding: 12
+          config_order: languages
           extras_css: |
             svg { background: #0D0814; color: #ECE6F0; }
             h1, h2, h3 { color: #C084FC; }
