@@ -16,7 +16,7 @@
 
 ## GO Horse Developer · Kidscript de Rust · Absolute Fullstack 
 
-Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes estilo, cabeça-dura, palhaço, pai de jabuti, escritor de romance Yuri e autista hiperfocado com pelo menos QI 140+ (só perco pro Hindemburg Melão Junior). Atualmente sou dev fullstack em um projeto de P&D da LG voltado pra automação de processos e machine learning. Em relação aos estudos eu costumo misturar bastante, atualmente lendo *Hands-On Machine Learning* e um pouco do *Designing Data-Intensive Applications*, sempre fuçando uns artigos pra achar alguma área legal, tô procurando temas de mestrado em áreas como World Models, NLP pra busca profunda na web e também um pouco em economia (sim).
+Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeça-dura, palhaço, pai de jabuti, escritor de romance Yuri e autista hiperfocado com pelo menos QI 140+ (só perco pro Hindemburg Melão Junior). Atualmente sou dev fullstack em um projeto de P&D da LG voltado pra automação de processos e machine learning. Em relação aos estudos eu costumo misturar bastante, atualmente lendo *Hands-On Machine Learning* e um pouco do *Designing Data-Intensive Applications*, sempre fuçando uns artigos pra achar alguma área legal, tô procurando temas de mestrado em áreas como World Models, NLP pra busca profunda na web e também um pouco em economia (sim).
 
 ## Stack principal
 
@@ -51,7 +51,7 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes estilo, cab
 ![Ollama](https://img.shields.io/badge/Ollama-13091F?style=flat-square&logo=ollama&logoColor=A855F7)
 ![MLflow](https://img.shields.io/badge/MLflow-13091F?style=flat-square&logo=mlflow&logoColor=9333EA)
 ![DVC](https://img.shields.io/badge/DVC-13091F?style=flat-square&logo=dvc&logoColor=A78BFA)
-![FlowAI](https://img.shields.io/badge/FlowAI-13091F?style=flat-square&logo=nodered&logoColor=B777F9)
+![FlowAI](https://img.shields.io/badge/FlowAI-13091F?style=flat-square&logo=graphql&logoColor=B777F9)
 ![Streamlit](https://img.shields.io/badge/Streamlit-13091F?style=flat-square&logo=streamlit&logoColor=C084FC)
 
 #### Frontend 
@@ -76,6 +76,7 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes estilo, cab
 ![Git](https://img.shields.io/badge/Git-13091F?style=flat-square&logo=git&logoColor=C084FC)
 ![GitHub](https://img.shields.io/badge/GitHub-13091F?style=flat-square&logo=github&logoColor=B777F9)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-13091F?style=flat-square&logo=githubactions&logoColor=A78BFA)
+![CI/CD](https://img.shields.io/badge/CI%2FCD-13091F?style=flat-square&logo=githubactions&logoColor=FF2A5F)
 ![Linux](https://img.shields.io/badge/Linux-13091F?style=flat-square&logo=linux&logoColor=9965F4)
 ![Bash](https://img.shields.io/badge/Bash-13091F?style=flat-square&logo=gnubash&logoColor=8B24D6)
 ![Nginx](https://img.shields.io/badge/Nginx-13091F?style=flat-square&logo=nginx&logoColor=7928CA)
