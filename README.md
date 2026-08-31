@@ -96,7 +96,7 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes estilo Cind
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github-stats-extended.vercel.app/api?username=g-f307&amp;show_icons=true&amp;include_all_commits=true&amp;locale=pt-br&amp;bg_color=0D0814&amp;title_color=C084FC&amp;text_color=ECE6F0&amp;icon_color=FF2A5F&amp;border_color=3D105B" />
   <source media="(prefers-color-scheme: light)" srcset="https://github-stats-extended.vercel.app/api?username=g-f307&amp;show_icons=true&amp;include_all_commits=true&amp;locale=pt-br&amp;bg_color=FAF5FF&amp;title_color=6B21A8&amp;text_color=1E1035&amp;icon_color=E11D48&amp;border_color=D8B4FE" />
-  <img height="180" alt="Estatísticas do GitHub de Gabriel Fernandes" src="https://github-stats-extended.vercel.app/api?username=g-f307&amp;show_icons=true&amp;include_all_commits=true&amp;locale=pt-br" />
+  <img height="180" alt="Estatísticas do GitHubs" src="https://github-stats-extended.vercel.app/api?username=g-f307&amp;show_icons=true&amp;include_all_commits=true&amp;locale=pt-br" />
 </picture>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github-stats-extended.vercel.app/api/top-langs/?username=g-f307&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;bg_color=0D0814&amp;title_color=C084FC&amp;text_color=ECE6F0&amp;border_color=3D105B&amp;hide=jupyter%20notebook,html,css" />
