@@ -3,15 +3,15 @@
   <rect x="0.75" y="0.75" width="298.5" height="178.5" rx="5" fill="#0D0814" stroke="#3D105B" stroke-width="1.5" />
   <text x="20" y="39" class="title">Linguagens mais utilizadas</text>
   <clipPath id="bar-clip"><rect x="20" y="55" width="260" height="8" rx="4" /></clipPath>
-  <g clip-path="url(#bar-clip)"><rect x="20.00" y="0" width="140.09" height="8" fill="#A855F7" /><rect x="160.09" y="0" width="57.53" height="8" fill="#D7FF5F" /><rect x="217.62" y="0" width="35.30" height="8" fill="#FDE047" /><rect x="252.92" y="0" width="13.80" height="8" fill="#FB7185" /><rect x="266.73" y="0" width="5.75" height="8" fill="#FF4D8D" /><rect x="272.48" y="0" width="5.34" height="8" fill="#8B5CF6" /><rect x="277.81" y="0" width="1.77" height="8" fill="#E879F9" /><rect x="279.58" y="0" width="0.42" height="8" fill="#FDE047" /></g>
+  <g clip-path="url(#bar-clip)"><rect x="20.00" y="0" width="139.94" height="8" fill="#A855F7" /><rect x="159.94" y="0" width="57.46" height="8" fill="#D7FF5F" /><rect x="217.40" y="0" width="35.56" height="8" fill="#FDE047" /><rect x="252.95" y="0" width="13.79" height="8" fill="#FB7185" /><rect x="266.74" y="0" width="5.74" height="8" fill="#FF4D8D" /><rect x="272.48" y="0" width="5.33" height="8" fill="#8B5CF6" /><rect x="277.82" y="0" width="1.76" height="8" fill="#E879F9" /><rect x="279.58" y="0" width="0.42" height="8" fill="#FDE047" /></g>
   <circle cx="20" cy="84" r="5" fill="#A855F7" />
-      <text x="31" y="88" class="language">TypeScript 53.88%</text>
+      <text x="31" y="88" class="language">TypeScript 53.82%</text>
 <circle cx="20" cy="105" r="5" fill="#D7FF5F" />
-      <text x="31" y="109" class="language">Python 22.13%</text>
+      <text x="31" y="109" class="language">Python 22.10%</text>
 <circle cx="20" cy="126" r="5" fill="#FDE047" />
-      <text x="31" y="130" class="language">JavaScript 13.58%</text>
+      <text x="31" y="130" class="language">JavaScript 13.68%</text>
 <circle cx="20" cy="147" r="5" fill="#FB7185" />
-      <text x="31" y="151" class="language">Java 5.31%</text>
+      <text x="31" y="151" class="language">Java 5.30%</text>
 <circle cx="158" cy="84" r="5" fill="#FF4D8D" />
       <text x="169" y="88" class="language">Rust 2.21%</text>
 <circle cx="158" cy="105" r="5" fill="#8B5CF6" />
