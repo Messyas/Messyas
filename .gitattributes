@@ -1,0 +1,4 @@
+# Ignora Jupyter Notebooks, HTML e CSS na contagem de linguagens do GitHub Linguist
+*.ipynb linguist-detectable=false
+*.html linguist-detectable=false
+*.css linguist-detectable=false
