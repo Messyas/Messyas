@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180" viewBox="0 0 300 180" role="img" aria-label="Linguagens mais utilizadas">
+  <style>.title { font: 700 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #C084FC; }.language { font: 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #ECE6F0; }</style>
+  <rect x="0.75" y="0.75" width="298.5" height="178.5" rx="5" fill="#0D0814" stroke="#3D105B" stroke-width="1.5" />
+  <text x="20" y="39" class="title">Linguagens mais utilizadas</text>
+  <clipPath id="bar-clip"><rect x="20" y="55" width="260" height="8" rx="4" /></clipPath>
+  <g clip-path="url(#bar-clip)"><rect x="20.00" y="0" width="140.09" height="8" fill="#A855F7" /><rect x="160.09" y="0" width="57.53" height="8" fill="#D7FF5F" /><rect x="217.62" y="0" width="35.30" height="8" fill="#FDE047" /><rect x="252.92" y="0" width="13.80" height="8" fill="#FB7185" /><rect x="266.73" y="0" width="5.75" height="8" fill="#FF4D8D" /><rect x="272.48" y="0" width="5.34" height="8" fill="#8B5CF6" /><rect x="277.81" y="0" width="1.77" height="8" fill="#E879F9" /><rect x="279.58" y="0" width="0.42" height="8" fill="#FDE047" /></g>
+  <circle cx="20" cy="84" r="5" fill="#A855F7" />
+      <text x="31" y="88" class="language">TypeScript 53.88%</text>
+<circle cx="20" cy="105" r="5" fill="#D7FF5F" />
+      <text x="31" y="109" class="language">Python 22.13%</text>
+<circle cx="20" cy="126" r="5" fill="#FDE047" />
+      <text x="31" y="130" class="language">JavaScript 13.58%</text>
+<circle cx="20" cy="147" r="5" fill="#FB7185" />
+      <text x="31" y="151" class="language">Java 5.31%</text>
+<circle cx="158" cy="84" r="5" fill="#FF4D8D" />
+      <text x="169" y="88" class="language">Rust 2.21%</text>
+<circle cx="158" cy="105" r="5" fill="#8B5CF6" />
+      <text x="169" y="109" class="language">C 2.05%</text>
+<circle cx="158" cy="126" r="5" fill="#E879F9" />
+      <text x="169" y="130" class="language">Kotlin 0.68%</text>
+<circle cx="158" cy="147" r="5" fill="#FDE047" />
+      <text x="169" y="151" class="language">Dockerfile 0.16%</text>
+</svg>
