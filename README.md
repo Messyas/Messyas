@@ -18,11 +18,11 @@
 
 Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeça-dura, palhaço, pai de jabuti, escritor de romance Yuri e autista hiperfocado com pelo menos QI 140+ (só perco pro Hindemburg Melão Junior). Atualmente sou dev fullstack em um projeto de P&D da LG voltado pra automação de processos e machine learning. Em relação aos estudos eu costumo misturar bastante, atualmente lendo *Hands-On Machine Learning* e um pouco do *Designing Data-Intensive Applications*, sempre fuçando uns artigos pra achar alguma área legal, tô procurando temas de mestrado em áreas como World Models, NLP pra busca profunda na web e também um pouco em economia (sim).
 
-## Stack principal
+## Stacks
 
 <div align="center">
 
-#### Backend & Dados
+#### Backend & Database
 
 ![C](https://img.shields.io/badge/C-13091F?style=flat-square&logo=c&logoWidth=18&logoColor=D8B4FE)
 ![C++](https://img.shields.io/badge/C%2B%2B-13091F?style=flat-square&logo=cplusplus&logoWidth=18&logoColor=D1ACFE)
@@ -41,7 +41,7 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeç
 ![Redis](https://img.shields.io/badge/Redis-13091F?style=flat-square&logo=redis&logoWidth=18&logoColor=EC4899)
 ![Supabase](https://img.shields.io/badge/Supabase-13091F?style=flat-square&logo=supabase&logoWidth=18&logoColor=F43F7E)
 
-#### Inteligência Artificial
+#### Machine Learning
 
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-13091F?style=flat-square&logo=scikitlearn&logoWidth=18&logoColor=FF2A5F)
 ![OpenCV](https://img.shields.io/badge/OpenCV-13091F?style=flat-square&logo=opencv&logoWidth=18&logoColor=FB4773)
