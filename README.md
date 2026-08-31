@@ -101,7 +101,7 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes estilo Cind
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github-stats-extended.vercel.app/api/top-langs/?username=g-f307&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;bg_color=0D0814&amp;title_color=C084FC&amp;text_color=ECE6F0&amp;border_color=3D105B&amp;hide=jupyter%20notebook,html,css" />
   <source media="(prefers-color-scheme: light)" srcset="https://github-stats-extended.vercel.app/api/top-langs/?username=g-f307&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;bg_color=FAF5FF&amp;title_color=6B21A8&amp;text_color=1E1035&amp;border_color=D8B4FE&amp;hide=jupyter%20notebook,html,css" />
-  <img height="180" alt="Linguagens mais utilizadas por Gabriel Fernandes" src="https://github-stats-extended.vercel.app/api/top-langs/?username=g-f307&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;hide=jupyter%20notebook,html,css" />
+  <img height="180" alt="Linguagens mais utilizadas" src="https://github-stats-extended.vercel.app/api/top-langs/?username=g-f307&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;hide=jupyter%20notebook,html,css" />
 </picture>
 
 </div>

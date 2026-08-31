@@ -24,7 +24,7 @@ jobs:
           user: ${{ github.repository_owner }}
           template: classic
           base: header, activity, community, repositories
-          config_timezone: America/Sao_Paulo
+          config_timezone: America/Manaus
           
           # Destino do SVG gerado
           output_action: commit
