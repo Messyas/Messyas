@@ -98,11 +98,7 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes estilo, cab
   <source media="(prefers-color-scheme: light)" srcset="https://github-stats-extended.vercel.app/api?username=Messyas&amp;show_icons=true&amp;include_all_commits=true&amp;locale=pt-br&amp;bg_color=FAF5FF&amp;title_color=6B21A8&amp;text_color=1E1035&amp;icon_color=E11D48&amp;border_color=D8B4FE" />
   <img height="180" alt="Estatísticas do GitHub" src="https://github-stats-extended.vercel.app/api?username=Messyas&amp;show_icons=true&amp;include_all_commits=true&amp;locale=pt-br" />
 </picture>
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-stats-extended.vercel.app/api/top-langs/?username=Messyas&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;bg_color=0D0814&amp;title_color=C084FC&amp;text_color=ECE6F0&amp;border_color=3D105B&amp;hide=html,css,markdown,powershell,handlebars,jupyter%20notebook&amp;v=1" />
-  <source media="(prefers-color-scheme: light)" srcset="https://github-stats-extended.vercel.app/api/top-langs/?username=Messyas&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;bg_color=FAF5FF&amp;title_color=6B21A8&amp;text_color=1E1035&amp;border_color=D8B4FE&amp;hide=html,css,markdown,powershell,handlebars,jupyter%20notebook&amp;v=1" />
-  <img height="180" alt="Linguagens mais utilizadas" src="https://github-stats-extended.vercel.app/api/top-langs/?username=Messyas&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;hide=html,css,markdown,powershell,handlebars,jupyter%20notebook&amp;v=1" />
-</picture>
+<img height="180" alt="Linguagens mais utilizadas" src="assets/github-metrics.svg" />
 
 </div>
 

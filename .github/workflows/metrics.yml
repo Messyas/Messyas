@@ -23,8 +23,14 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: ${{ github.repository_owner }}
           template: classic
-          base: header, activity, community, repositories
+          base: ""
           config_timezone: America/Manaus
+          config_display: 300
+          config_padding: 12
+          extras_css: |
+            svg { background: #0D0814; color: #ECE6F0; }
+            h1, h2, h3 { color: #C084FC; }
+            .field svg { fill: #D8B4FE; }
           
           # Destino do SVG gerado
           output_action: commit
@@ -34,8 +40,14 @@ jobs:
           # Configuração de Linguagens
           plugin_languages: yes
           plugin_languages_ignored: >-
-            jupyter notebook, html, css, tex, less, scss, markdown
+            jupyter notebook, html, css, tex, less, scss, markdown, powershell,
+            handlebars
           plugin_languages_details: bytes-size, percentage
           plugin_languages_limit: 8
           plugin_languages_sections: most-used
-          plugin_languages_colors: github
+          plugin_languages_colors: >-
+            typescript:#A855F7, rust:#FF4D8D, python:#D7FF5F,
+            javascript:#F43F7E, go:#C084FC, c:#8B5CF6, c++:#B779FF,
+            java:#FB7185, kotlin:#E879F9, dart:#A78BFA, c#:#C084FC,
+            0:#A855F7, 1:#FF4D8D, 2:#D7FF5F, 3:#F43F7E,
+            4:#C084FC, 5:#8B5CF6, 6:#B779FF, 7:#FB7185
