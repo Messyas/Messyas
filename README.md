@@ -94,9 +94,9 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes estilo, cab
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-stats-extended.vercel.app/api?username=Messyas&amp;show_icons=true&amp;include_all_commits=true&amp;locale=pt-br&amp;bg_color=0D0814&amp;title_color=C084FC&amp;text_color=ECE6F0&amp;icon_color=FF2A5F&amp;border_color=3D105B" />
-  <source media="(prefers-color-scheme: light)" srcset="https://github-stats-extended.vercel.app/api?username=Messyas&amp;show_icons=true&amp;include_all_commits=true&amp;locale=pt-br&amp;bg_color=FAF5FF&amp;title_color=6B21A8&amp;text_color=1E1035&amp;icon_color=E11D48&amp;border_color=D8B4FE" />
-  <img height="180" alt="Estatísticas do GitHub" src="https://github-stats-extended.vercel.app/api?username=Messyas&amp;show_icons=true&amp;include_all_commits=true&amp;locale=pt-br" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-dark.svg?v=1" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-light.svg?v=1" />
+  <img height="180" alt="Estatísticas do GitHub" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-light.svg?v=1" />
 </picture>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-dark.svg?v=1" />

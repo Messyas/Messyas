@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Gerar cards de linguagens
+      - name: Gerar cards do perfil
         env:
           PROFILE_USERNAME: ${{ github.repository_owner }}
           METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
@@ -28,6 +28,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/github-languages-dark.svg assets/github-languages-light.svg
-          git diff --cached --quiet || git commit -m "chore: atualizar linguagens do perfil [skip ci]"
+          git add assets/github-languages-dark.svg assets/github-languages-light.svg assets/github-stats-dark.svg assets/github-stats-light.svg
+          git diff --cached --quiet || git commit -m "chore: atualizar cards do perfil [skip ci]"
           git push

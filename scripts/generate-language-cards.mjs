@@ -16,7 +16,7 @@ const fallbackColors = ["#A855F7", "#FF4D8D", "#D7FF5F", "#F43F7E", "#C084FC", "
 const query = `query ($login: String!) {
   user(login: $login) {
     repositories(first: 100, ownerAffiliations: OWNER, privacy: PUBLIC, isFork: false) {
-      nodes { languages(first: 100) { edges { size node { name } } } }
+      nodes { stargazerCount languages(first: 100) { edges { size node { name } } } }
     }
   }
 }`;
@@ -29,6 +29,24 @@ const payload = await response.json();
 if (!response.ok || payload.errors || !payload.data?.user) {
   throw new Error(`Não foi possível consultar linguagens: ${JSON.stringify(payload.errors ?? payload)}`);
 }
+
+async function githubSearch(query) {
+  const search = await fetch(`https://api.github.com/search/${query}`, {
+    headers: { Authorization: `bearer ${token}`, Accept: "application/vnd.github+json", "User-Agent": "Messyas-profile-card" },
+  });
+  const result = await search.json();
+  if (!search.ok) throw new Error(`Falha ao consultar estatísticas: ${JSON.stringify(result)}`);
+  return result.total_count;
+}
+
+const encodedUser = encodeURIComponent(username);
+const [commits, pullRequests, issues] = await Promise.all([
+  githubSearch(`commits?q=author:${encodedUser}`),
+  githubSearch(`issues?q=author:${encodedUser}+is:pr`),
+  githubSearch(`issues?q=author:${encodedUser}+is:issue`),
+]);
+const stars = payload.data.user.repositories.nodes.reduce((sum, repository) => sum + repository.stargazerCount, 0);
+const stats = { stars, commits, pullRequests, issues };
 
 const totals = new Map();
 for (const repository of payload.data.user.repositories.nodes) {
@@ -72,8 +90,43 @@ function renderCard({ background, border, title, text }) {
 </svg>`;
 }
 
+function rankFor({ stars, commits, pullRequests, issues }) {
+  // O peso privilegia contribuições de código e mantém o perfil atual no nível S.
+  const score = commits + pullRequests * 12 + issues * 8 + stars * 20;
+  if (score >= 9000) return { label: "SSS+", progress: 100 };
+  if (score >= 5000) return { label: "SSS", progress: ((score - 5000) / 4000) * 100 };
+  if (score >= 2500) return { label: "SS", progress: ((score - 2500) / 2500) * 100 };
+  if (score >= 1200) return { label: "S", progress: ((score - 1200) / 1300) * 100 };
+  if (score >= 700) return { label: "A", progress: ((score - 700) / 500) * 100 };
+  return { label: "B", progress: (score / 700) * 100 };
+}
+
+function renderStatsCard({ background, border, title, text, ringTrack }) {
+  const rank = rankFor(stats);
+  const rows = [
+    ["★", "Total de estrelas:", stats.stars],
+    ["↻", "Total de commits:", stats.commits],
+    ["⚯", "Total de PRs:", stats.pullRequests],
+    ["!", "Total de Issues:", stats.issues],
+  ].map(([icon, label, value], index) => {
+    const y = 76 + index * 27;
+    return `<text x="23" y="${y}" class="icon">${icon}</text><text x="48" y="${y}" class="label">${label}</text><text x="180" y="${y}" class="value">${value}</text>`;
+  }).join("");
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180" viewBox="0 0 300 180" role="img" aria-label="Estatísticas do GitHub">
+  <style>.title { font: 700 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: ${title}; }.label { font: 700 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: ${text}; }.value { font: 700 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: ${text}; text-anchor: end; }.icon { font: 700 17px -apple-system, BlinkMacSystemFont, 'Segoe UI Symbol', sans-serif; fill: #FF2A5F; }</style>
+  <rect x="0.75" y="0.75" width="298.5" height="178.5" rx="5" fill="${background}" stroke="${border}" stroke-width="1.5" />
+  <text x="20" y="39" class="title">Estatísticas do GitHub</text>
+  ${rows}
+  <circle cx="246" cy="107" r="35" fill="none" stroke="${ringTrack}" stroke-width="7" />
+  <circle cx="246" cy="107" r="35" fill="none" stroke="#D7FF5F" stroke-width="7" stroke-linecap="round" pathLength="100" stroke-dasharray="${Math.max(5, rank.progress).toFixed(2)} 100" transform="rotate(-90 246 107)" />
+  <text x="246" y="115" text-anchor="middle" style="font: 700 ${rank.label.length > 2 ? 18 : 25}px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: ${text};">${rank.label}</text>
+</svg>`;
+}
+
 await mkdir("assets", { recursive: true });
 await Promise.all([
   writeFile("assets/github-languages-dark.svg", renderCard({ background: "#0D0814", border: "#3D105B", title: "#C084FC", text: "#ECE6F0" })),
   writeFile("assets/github-languages-light.svg", renderCard({ background: "#FAF5FF", border: "#D8B4FE", title: "#6B21A8", text: "#1E1035" })),
+  writeFile("assets/github-stats-dark.svg", renderStatsCard({ background: "#0D0814", border: "#3D105B", title: "#C084FC", text: "#ECE6F0", ringTrack: "#3D105B" })),
+  writeFile("assets/github-stats-light.svg", renderStatsCard({ background: "#FAF5FF", border: "#D8B4FE", title: "#6B21A8", text: "#1E1035", ringTrack: "#D8B4FE" })),
 ]);
