@@ -16,7 +16,7 @@
 
 ## GO Horse Developer · Kidscript de Rust · Absolute Fullstack 
 
-Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes estilo Cinderela Taiju, cabeça-dura, palhaço, pai de jabuti, escritor de romance Yuri e autista hiperfocado com pelo menos QI 140+ (só perco pro Hindemburg Melão Junior). Atualmente sou dev fullstack em um projeto de P&D da LG voltado pra automação de processos e machine learning. Em relação aos estudos eu costumo misturar bastante, atualmente lendo *Hands-On Machine Learning* e um pouco do *Designing Data-Intensive Applications*, sempre fuçando uns artigos pra achar alguma área legal, tô procurando temas de mestrado em áreas como World Models, NLP pra busca profunda na web e também um pouco em economia (sim).
+Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes estilo, cabeça-dura, palhaço, pai de jabuti, escritor de romance Yuri e autista hiperfocado com pelo menos QI 140+ (só perco pro Hindemburg Melão Junior). Atualmente sou dev fullstack em um projeto de P&D da LG voltado pra automação de processos e machine learning. Em relação aos estudos eu costumo misturar bastante, atualmente lendo *Hands-On Machine Learning* e um pouco do *Designing Data-Intensive Applications*, sempre fuçando uns artigos pra achar alguma área legal, tô procurando temas de mestrado em áreas como World Models, NLP pra busca profunda na web e também um pouco em economia (sim).
 
 ## Stack principal
 
@@ -99,9 +99,9 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes estilo Cind
   <img height="180" alt="Estatísticas do GitHub" src="https://github-stats-extended.vercel.app/api?username=Messyas&amp;show_icons=true&amp;include_all_commits=true&amp;locale=pt-br" />
 </picture>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-stats-extended.vercel.app/api/top-langs/?username=Messyas&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;bg_color=0D0814&amp;title_color=C084FC&amp;text_color=ECE6F0&amp;border_color=3D105B&amp;hide=html,css,jupyter%20notebook&amp;v=1" />
-  <source media="(prefers-color-scheme: light)" srcset="https://github-stats-extended.vercel.app/api/top-langs/?username=Messyas&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;bg_color=FAF5FF&amp;title_color=6B21A8&amp;text_color=1E1035&amp;border_color=D8B4FE&amp;hide=html,css,jupyter%20notebook&amp;v=1" />
-  <img height="180" alt="Linguagens mais utilizadas" src="https://github-stats-extended.vercel.app/api/top-langs/?username=Messyas&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;hide=html,css,jupyter%20notebook&amp;v=1" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-stats-extended.vercel.app/api/top-langs/?username=Messyas&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;bg_color=0D0814&amp;title_color=C084FC&amp;text_color=ECE6F0&amp;border_color=3D105B&amp;hide=html,css,markdown,powershell,handlebars,jupyter%20notebook&amp;v=1" />
+  <source media="(prefers-color-scheme: light)" srcset="https://github-stats-extended.vercel.app/api/top-langs/?username=Messyas&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;bg_color=FAF5FF&amp;title_color=6B21A8&amp;text_color=1E1035&amp;border_color=D8B4FE&amp;hide=html,css,markdown,powershell,handlebars,jupyter%20notebook&amp;v=1" />
+  <img height="180" alt="Linguagens mais utilizadas" src="https://github-stats-extended.vercel.app/api/top-langs/?username=Messyas&amp;layout=compact&amp;langs_count=8&amp;locale=pt-br&amp;hide=html,css,markdown,powershell,handlebars,jupyter%20notebook&amp;v=1" />
 </picture>
 
 </div>
@@ -109,8 +109,6 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes estilo Cind
 </br>
 
 <div align="center">
-
-### Saiba mais sobre mim
 
 <a href="https://messyas.github.io/meu-site-portifolio/">
   <img src="assets/portfolio-button.svg" alt="Portfólio" height="38" />
