@@ -107,7 +107,7 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeç
 
 <br/>
 
-<img src="./profile-3d-contrib/profile-night-rainbow.svg" alt="Gráfico 3D de Contribuições" />
+<img src="https://raw.githubusercontent.com/Messyas/Messyas/main/profile-3d-contrib/profile-night-rainbow.svg?v=2" alt="Gráfico 3D de Contribuições" />
 
 </div>
 
