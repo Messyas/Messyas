@@ -105,6 +105,10 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeç
   <img height="180" alt="Linguagens mais utilizadas" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-light.svg?v=1" />
 </picture>
 
+<br/>
+
+<img src="https://raw.githubusercontent.com/Messyas/Messyas/main/profile-3d-contrib/profile-night-rainbow.svg" alt="Gráfico 3D de Contribuições" />
+
 </div>
 
 </br>
