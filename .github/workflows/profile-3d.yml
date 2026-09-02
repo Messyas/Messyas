@@ -23,6 +23,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
+      - name: Limpar graficos redundantes do SVG
+        run: node scripts/clean-3d-contrib.mjs
+
       - name: Salvar gráfico 3D gerado
         run: |
           git config user.name "github-actions[bot]"
