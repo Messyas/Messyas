@@ -11,7 +11,7 @@ export const THEME_CONFIG = {
   // Cor de fundo do gráfico (idêntica ao fundo dos cards de estatísticas e linguagens)
   backgroundColor: "#0D0814",
 
-  // Modo do gradiente:
+  // Modo do gradiente do calendário 3D:
   // - "animated": onda de gradiente que transita suavemente entre roxo, rosa e verde claro
   // - "static": cores fixas por nível de commits (0 a 4)
   gradientMode: "animated",
@@ -43,4 +43,16 @@ export const THEME_CONFIG = {
     "#A855F7", // Roxo elétrico
     "#3D105B", // Retorno ao violeta
   ],
+
+  // Configuração do Gráfico de Radar de Contribuições (Commit, Issue, PullReq, Review, Repo):
+  radar: {
+    show: true,                 // Exibir ou ocultar o gráfico de radar
+    fillColor: "#D7FF5F",       // Cor de preenchimento do polígono (Verde Python neon)
+    strokeColor: "#D7FF5F",     // Cor da borda neon do polígono
+    fillOpacity: 0.35,          // Opacidade do preenchimento
+    strokeWidth: "3px",         // Espessura da linha do radar
+    gridColor: "#3D105B",       // Linhas da grade pentagonal (violeta profundo dos cards)
+    labelColor: "#ECE6F0",      // Textos dos eixos (Commit, Issue, PullReq, Review, Repo)
+    scaleColor: "#A855F7",      // Números da escala (1, 10, 100, 1K, 10K)
+  },
 };

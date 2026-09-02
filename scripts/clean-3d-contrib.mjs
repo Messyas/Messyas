@@ -30,13 +30,19 @@ function shade(rgb, factor) {
 function generateCss(config) {
   const css = [];
   css.push(`* { font-family: "Ubuntu", "Helvetica", "Arial", sans-serif; }`);
-  css.push(`.fill-fg { fill: #ECE6F0; }`);
+  css.push(`.fill-fg { fill: ${config.radar?.labelColor || "#ECE6F0"}; }`);
   css.push(`.stroke-fg { stroke: #ECE6F0; }`);
   css.push(`.fill-bg { fill: ${config.backgroundColor}; }`);
   css.push(`.stroke-bg { stroke: ${config.backgroundColor}; }`);
   css.push(`.fill-strong { fill: #FF2A5F; }`);
-  css.push(`.fill-weak { fill: #A855F7; }`);
-  css.push(`.stroke-weak { stroke: #3D105B; }`);
+  css.push(`.fill-weak { fill: ${config.radar?.scaleColor || "#A855F7"}; }`);
+  css.push(`.stroke-weak { stroke: ${config.radar?.gridColor || "#3D105B"}; }`);
+
+  if (config.radar?.show) {
+    css.push(
+      `.radar { stroke-width: ${config.radar.strokeWidth || "3px"}; stroke: ${config.radar.strokeColor || "#D7FF5F"}; fill: ${config.radar.fillColor || "#D7FF5F"}; fill-opacity: ${config.radar.fillOpacity ?? 0.35}; filter: drop-shadow(0 0 6px rgba(215, 255, 95, 0.4)); }`
+    );
+  }
 
   const faceFactors = {
     top: 1.0,
@@ -82,7 +88,34 @@ function generateCss(config) {
   return css.join("\n");
 }
 
-function cleanAndThemeSvg(content) {
+function themeRadar(radarXml, config) {
+  let themed = radarXml;
+
+  // Linhas da grade e dos eixos
+  themed = themed.replace(/style="([^"]*?)stroke:\s*#[0-9a-fA-F]+([^"]*?)"/g, (match, before, after) => {
+    return `style="${before}stroke: ${config.gridColor || "#3D105B"}${after}"`;
+  });
+  themed = themed.replace(/class="stroke-weak"/g, `class="stroke-weak" style="stroke: ${config.gridColor || "#3D105B"}; stroke-dasharray: 4 4;"`);
+
+  // Números da escala (1, 10, 100, 1K, 10K)
+  themed = themed.replace(/(<text[^>]*dominant-baseline="auto"[^>]*fill=")[^"]*(")/g, `$1${config.scaleColor || "#A855F7"}$2`);
+
+  // Nomes dos eixos (Commit, Issue, PullReq, Review, Repo)
+  themed = themed.replace(/(<text[^>]*class="fill-fg"[^>]*)>/g, `$1 fill="${config.labelColor || "#ECE6F0"}" font-weight="600">`);
+  themed = themed.replace(/(<text[^>]*dominant-baseline="middle"[^>]*fill=")[^"]*(")/g, `$1${config.labelColor || "#ECE6F0"}" font-weight="600$2`);
+
+  // Polígono do radar
+  themed = themed.replace(/<polygon\b([^>]*)>/, (match, attrs) => {
+    let clean = attrs.replace(/\s*style="[^"]*"/, "");
+    clean = clean.replace(/\s*class="[^"]*"/, "");
+    const styleAttr = `class="radar" style="stroke-width: ${config.strokeWidth || "3px"}; stroke: ${config.strokeColor || "#D7FF5F"}; fill: ${config.fillColor || "#D7FF5F"}; fill-opacity: ${config.fillOpacity ?? 0.35}; filter: drop-shadow(0 0 6px rgba(215, 255, 95, 0.4));"`;
+    return `<polygon ${styleAttr}${clean}>`;
+  });
+
+  return themed;
+}
+
+function cleanAndThemeSvg(content, fallbackRadar) {
   const lastSvgClose = content.lastIndexOf("</svg>");
   if (lastSvgClose === -1) return content;
 
@@ -124,17 +157,25 @@ function cleanAndThemeSvg(content) {
     }
   }
 
-  // Tag 0 é o gráfico 3D de contribuições
-  // Tag 1 (radar), Tag 2 (linguagens) e Tag 3 (estatísticas redundantes) são removidas
+  // Tag 0: Gráfico 3D de contribuições (mantido)
+  // Tag 1: Gráfico de radar (mantido se configurado)
+  // Tag 2: Gráfico de pizza de linguagens (removido)
+  // Tag 3: Estatísticas de texto/estrelas (removido)
   let newBody = "";
   if (tags.length >= 1) {
     newBody = tags[0];
 
-    // Opcional: manter data do período se presente
-    if (tags.length >= 4) {
-      const dateMatch = tags[3].match(/<text[^>]*\d{4}-\d{2}-\d{2}\s*\/\s*\d{4}-\d{2}-\d{2}<\/text>/);
-      if (dateMatch) {
-        newBody += `<g>${dateMatch[0]}</g>`;
+    // Gráfico de radar
+    if (THEME_CONFIG.radar?.show) {
+      let radarGroup = null;
+      if (tags.length >= 2 && tags[1].includes("translate(980") || (tags.length >= 2 && tags[1].includes("class=\"axis\""))) {
+        radarGroup = tags[1];
+      } else if (fallbackRadar) {
+        radarGroup = fallbackRadar;
+      }
+
+      if (radarGroup) {
+        newBody += themeRadar(radarGroup, THEME_CONFIG.radar);
       }
     }
   } else {
@@ -152,14 +193,21 @@ function cleanAndThemeSvg(content) {
 
 async function main() {
   try {
+    let fallbackRadar = null;
+    try {
+      fallbackRadar = await readFile("scripts/radar-snippet.xml", "utf8");
+    } catch {
+      // Nenhum snippet salvo ainda
+    }
+
     const files = await readdir(dir);
     for (const file of files) {
       if (!file.endsWith(".svg")) continue;
       const filePath = join(dir, file);
       const original = await readFile(filePath, "utf8");
-      const cleaned = cleanAndThemeSvg(original);
+      const cleaned = cleanAndThemeSvg(original, fallbackRadar);
       await writeFile(filePath, cleaned, "utf8");
-      console.log(`Processado ${file}: aplicado tema customizado em CSS.`);
+      console.log(`Processado ${file}: calendário 3D + gráfico de radar integrados com o tema do Git.`);
     }
   } catch (err) {
     console.error("Erro ao processar SVGs 3D:", err);
