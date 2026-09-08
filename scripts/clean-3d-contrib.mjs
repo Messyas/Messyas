@@ -1,6 +1,7 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { THEME_CONFIG } from "./theme-config.mjs";
+import { parseContributionDays, generate3dRotationSvg } from "./generate-3d-rotate.mjs";
 
 const dir = "profile-3d-contrib";
 
@@ -95,19 +96,21 @@ function themeRadar(radarXml, config) {
   themed = themed.replace(/style="([^"]*?)stroke:\s*#[0-9a-fA-F]+([^"]*?)"/g, (match, before, after) => {
     return `style="${before}stroke: ${config.gridColor || "#3D105B"}${after}"`;
   });
-  themed = themed.replace(/class="stroke-weak"/g, `class="stroke-weak" style="stroke: ${config.gridColor || "#3D105B"}; stroke-dasharray: 4 4;"`);
+  themed = themed.replace(/class="stroke-weak"(\s+style="[^"]*")?/g, `class="stroke-weak" style="stroke: ${config.gridColor || "#3D105B"}; stroke-dasharray: 4 4;"`);
 
   // Números da escala (1, 10, 100, 1K, 10K)
   themed = themed.replace(/(<text[^>]*dominant-baseline="auto"[^>]*fill=")[^"]*(")/g, `$1${config.scaleColor || "#A855F7"}$2`);
 
   // Nomes dos eixos (Commit, Issue, PullReq, Review, Repo)
-  themed = themed.replace(/(<text[^>]*class="fill-fg"[^>]*)>/g, `$1 fill="${config.labelColor || "#ECE6F0"}" font-weight="600">`);
-  themed = themed.replace(/(<text[^>]*dominant-baseline="middle"[^>]*fill=")[^"]*(")/g, `$1${config.labelColor || "#ECE6F0"}" font-weight="600$2`);
+  themed = themed.replace(/<text([^>]*class="fill-fg"[^>]*)>/g, (match, attrs) => {
+    const cleanAttrs = attrs.replace(/\s*fill="[^"]*"/g, "").replace(/\s*font-weight="[^"]*"/g, "");
+    return `<text${cleanAttrs} fill="${config.labelColor || "#ECE6F0"}" font-weight="600">`;
+  });
+  themed = themed.replace(/(<text[^>]*dominant-baseline="middle"[^>]*fill=")[^"]*(")(?:\s*font-weight="[^"]*")?/g, `$1${config.labelColor || "#ECE6F0"}$2 font-weight="600"`);
 
   // Polígono do radar
   themed = themed.replace(/<polygon\b([^>]*)>/, (match, attrs) => {
-    let clean = attrs.replace(/\s*style="[^"]*"/, "");
-    clean = clean.replace(/\s*class="[^"]*"/, "");
+    let clean = attrs.replace(/\s*style="[^"]*"/g, "").replace(/\s*class="[^"]*"/g, "");
     const styleAttr = `class="radar" style="stroke-width: ${config.strokeWidth || "3px"}; stroke: ${config.strokeColor || "#D7FF5F"}; fill: ${config.fillColor || "#D7FF5F"}; fill-opacity: ${config.fillOpacity ?? 0.35}; filter: drop-shadow(0 0 6px rgba(215, 255, 95, 0.4));"`;
     return `<polygon ${styleAttr}${clean}>`;
   });
@@ -120,7 +123,7 @@ function cleanAndThemeSvg(content, fallbackRadar) {
   if (lastSvgClose === -1) return content;
 
   // 1. Localizar final do <rect> de fundo
-  const rectMatch = content.match(/<rect[^>]*class=["']fill-bg["'][^>]*><\/rect>|<rect[^>]*width=["']1280["'][^>]*><\/rect>/);
+  const rectMatch = content.match(/<rect[^>]*class=["']fill-bg["'][^>]*><\/rect>|<rect[^>]*width=["']1280["'][^>]*><\/rect>|<rect[^>]*width=["']127[0-9]["'][^>]*><\/rect>/);
   if (!rectMatch) return content;
 
   const afterBgIndex = content.indexOf(rectMatch[0]) + rectMatch[0].length;
@@ -134,11 +137,22 @@ function cleanAndThemeSvg(content, fallbackRadar) {
     prefix = prefix.replace(/<style>[\s\S]*?<\/style>/, `<style>\n${newCss}\n</style>`);
   }
 
-  // 3. Atualizar cor de fundo do <rect>
-  prefix = prefix.replace(
-    /<rect\b([^>]*)>/,
-    `<rect x="0" y="0" width="1280" height="850" fill="${THEME_CONFIG.backgroundColor}">`
-  );
+  // 3. Estilização do Card: borda arredondada (roundness) e stroke matching dos cards superiores
+  const card = THEME_CONFIG.card || {};
+  const rx = card.rx ?? 16;
+  const stroke = card.borderColor || "#3D105B";
+  const strokeWidth = card.borderWidth ?? 2;
+  const fill = card.backgroundColor || THEME_CONFIG.backgroundColor || "#0D0814";
+
+  const inset = (strokeWidth / 2).toFixed(1);
+  const w = (1280 - strokeWidth).toFixed(1);
+  const h = (850 - strokeWidth).toFixed(1);
+
+  const cardRect = `<rect x="${inset}" y="${inset}" width="${w}" height="${h}" rx="${rx}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"></rect>`;
+  const cardClip = `<defs><clipPath id="card-clip"><rect x="${inset}" y="${inset}" width="${w}" height="${h}" rx="${rx}"></rect></clipPath></defs>`;
+
+  // Substitui o <rect> plano antigo pela moldura arredondada estilizada
+  prefix = prefix.replace(/<rect\b[^>]*><\/rect>|<rect\b[^>]*\/>|<rect\b[^>]*>/, `${cardClip}${cardRect}`);
 
   // 4. Extrair tags <g> de nível superior
   let depth = 0;
@@ -161,32 +175,35 @@ function cleanAndThemeSvg(content, fallbackRadar) {
   // Tag 1: Gráfico de radar (mantido se configurado)
   // Tag 2: Gráfico de pizza de linguagens (removido)
   // Tag 3: Estatísticas de texto/estrelas (removido)
-  let newBody = "";
+  let innerBody = "";
   if (tags.length >= 1) {
-    newBody = tags[0];
+    innerBody = tags[0];
 
     // Gráfico de radar
     if (THEME_CONFIG.radar?.show) {
       let radarGroup = null;
-      if (tags.length >= 2 && tags[1].includes("translate(980") || (tags.length >= 2 && tags[1].includes("class=\"axis\""))) {
+      if (tags.length >= 2 && (tags[1].includes("translate(980") || tags[1].includes("class=\"axis\""))) {
         radarGroup = tags[1];
       } else if (fallbackRadar) {
         radarGroup = fallbackRadar;
       }
 
       if (radarGroup) {
-        newBody += themeRadar(radarGroup, THEME_CONFIG.radar);
+        innerBody += themeRadar(radarGroup, THEME_CONFIG.radar);
       }
     }
   } else {
-    newBody = body;
+    innerBody = body;
   }
 
   // 5. Remover tags <animate attributeName="fill"> antigas para evitar conflito com o CSS
-  newBody = newBody.replace(/<animate attributeName="fill"[^>]*><\/animate>/g, "");
+  innerBody = innerBody.replace(/<animate attributeName="fill"[^>]*><\/animate>/g, "");
 
   // 6. Remover atributos fill="..." fixos em rects que usam classes rb-l...
-  newBody = newBody.replace(/(<rect[^>]*class="rb-l[^"]*")[^>]*fill="[^"]*"/g, "$1");
+  innerBody = innerBody.replace(/(<rect[^>]*class="rb-l[^"]*")[^>]*fill="[^"]*"/g, "$1");
+
+  // Envolver o conteúdo com o clipPath do card para acabamento arredondado perfeito nas bordas
+  const newBody = `<g clip-path="url(#card-clip)">${innerBody}</g>`;
 
   return prefix + newBody + suffix;
 }
@@ -202,12 +219,44 @@ async function main() {
 
     const files = await readdir(dir);
     for (const file of files) {
-      if (!file.endsWith(".svg")) continue;
+      if (!file.endsWith(".svg") || file === "profile-360-horizontal.svg") continue;
       const filePath = join(dir, file);
       const original = await readFile(filePath, "utf8");
+
+      // Se a rotação 3D estiver ativa e for o arquivo principal profile-night-rainbow.svg (usado no README)
+      if (THEME_CONFIG.rotation3d?.enabled && file === "profile-night-rainbow.svg") {
+        let rawSource = original;
+        if (!original.includes("cont-top-") && !original.includes("rb-l")) {
+          try {
+            rawSource = await readFile(join(dir, "profile-green.svg"), "utf8");
+          } catch {
+            rawSource = original;
+          }
+        }
+        const days = parseContributionDays(rawSource);
+        let themedRadar = null;
+
+        if (THEME_CONFIG.radar?.show) {
+          const radarSource = fallbackRadar || (original.includes("class=\"axis\"") ? original : null);
+          if (radarSource) {
+            let radarGroup = fallbackRadar || radarSource;
+            themedRadar = themeRadar(radarGroup, THEME_CONFIG.radar);
+            // Alinha verticalmente o radar ao lado do 360 giratório
+            themedRadar = themedRadar.replace(/transform="translate\([0-9.]+,\s*[0-9.]+\)"/, `transform="translate(990, 440)"`);
+          }
+        }
+
+        const rotatedSvg = generate3dRotationSvg(days, THEME_CONFIG, themedRadar);
+        await writeFile(filePath, rotatedSvg, "utf8");
+        // Também gera o arquivo dedicado profile-360-horizontal.svg
+        await writeFile(join(dir, "profile-360-horizontal.svg"), rotatedSvg, "utf8");
+        console.log(`Processado ${file}: animação 3D de rotação 360° no plano horizontal gerada com sucesso!`);
+        continue;
+      }
+
       const cleaned = cleanAndThemeSvg(original, fallbackRadar);
       await writeFile(filePath, cleaned, "utf8");
-      console.log(`Processado ${file}: calendário 3D + gráfico de radar integrados com o tema do Git.`);
+      console.log(`Processado ${file}: moldura de card com bordas arredondadas aplicada.`);
     }
   } catch (err) {
     console.error("Erro ao processar SVGs 3D:", err);

@@ -27,7 +27,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
-      - name: Limpar graficos redundantes do SVG
+      - name: Gerar animacao 3D 360 no plano horizontal e aplicar tema
         run: node scripts/clean-3d-contrib.mjs
 
       - name: Salvar gráfico 3D gerado

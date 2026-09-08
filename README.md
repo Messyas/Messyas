@@ -98,8 +98,7 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeç
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-dark.svg?v=1" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-light.svg?v=1" />
   <img height="180" alt="Estatísticas do GitHub" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-light.svg?v=1" />
-</picture>
-<picture>
+</picture> <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-dark.svg?v=1" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-light.svg?v=1" />
   <img height="180" alt="Linguagens mais utilizadas" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-light.svg?v=1" />
@@ -107,7 +106,7 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeç
 
 <br/>
 
-<img src="https://raw.githubusercontent.com/Messyas/Messyas/main/profile-3d-contrib/profile-night-rainbow.svg?v=2" alt="Gráfico 3D de Contribuições" />
+<img width="606" src="profile-3d-contrib/profile-night-rainbow.svg" alt="Contribution Timeline" />
 
 </div>
 
