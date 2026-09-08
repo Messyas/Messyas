@@ -80,10 +80,10 @@ function renderCard({ background, border, title, text }) {
     return `<circle cx="${x}" cy="${y - 4}" r="5" fill="${language.color}" />
       <text x="${x + 11}" y="${y}" class="language">${escapeXml(language.name)} ${language.percentage.toFixed(2)}%</text>`;
   }).join("\n");
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180" viewBox="0 0 300 180" role="img" aria-label="Linguagens mais utilizadas">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180" viewBox="0 0 300 180" role="img" aria-label="Most Used Languages">
   <style>.title { font: 700 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: ${title}; }.language { font: 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: ${text}; }</style>
   <rect x="0.75" y="0.75" width="298.5" height="178.5" rx="5" fill="${background}" stroke="${border}" stroke-width="1.5" />
-  <text x="20" y="39" class="title">Linguagens mais utilizadas</text>
+  <text x="20" y="39" class="title">Most Used Languages</text>
   <clipPath id="bar-clip"><rect x="20" y="55" width="260" height="8" rx="4" /></clipPath>
   <g clip-path="url(#bar-clip)">${bar}</g>
   ${rows}
@@ -91,7 +91,7 @@ function renderCard({ background, border, title, text }) {
 }
 
 function rankFor({ stars, commits, pullRequests, issues }) {
-  // O peso privilegia contribuições de código e mantém o perfil atual no nível S.
+  // Score keeps the current profile at S level.
   const score = commits + pullRequests * 12 + issues * 8 + stars * 20;
   if (score >= 9000) return { label: "SSS+", progress: 100 };
   if (score >= 5000) return { label: "SSS", progress: ((score - 5000) / 4000) * 100 };
@@ -104,18 +104,18 @@ function rankFor({ stars, commits, pullRequests, issues }) {
 function renderStatsCard({ background, border, title, text, ringTrack }) {
   const rank = rankFor(stats);
   const rows = [
-    ["★", "Total de estrelas:", stats.stars],
-    ["↻", "Total de commits:", stats.commits],
-    ["⚯", "Total de PRs:", stats.pullRequests],
-    ["!", "Total de Issues:", stats.issues],
+    ["★", "Total Stars:", stats.stars],
+    ["↻", "Total Commits:", stats.commits],
+    ["⚯", "Total PRs:", stats.pullRequests],
+    ["!", "Total Issues:", stats.issues],
   ].map(([icon, label, value], index) => {
     const y = 76 + index * 27;
     return `<text x="23" y="${y}" class="icon">${icon}</text><text x="48" y="${y}" class="label">${label}</text><text x="180" y="${y}" class="value">${value}</text>`;
   }).join("");
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180" viewBox="0 0 300 180" role="img" aria-label="Estatísticas do GitHub">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180" viewBox="0 0 300 180" role="img" aria-label="GitHub Stats">
   <style>.title { font: 700 17px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: ${title}; }.label { font: 700 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: ${text}; }.value { font: 700 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: ${text}; text-anchor: end; }.icon { font: 700 17px -apple-system, BlinkMacSystemFont, 'Segoe UI Symbol', sans-serif; fill: #FF2A5F; }</style>
   <rect x="0.75" y="0.75" width="298.5" height="178.5" rx="5" fill="${background}" stroke="${border}" stroke-width="1.5" />
-  <text x="20" y="39" class="title">Estatísticas do GitHub</text>
+  <text x="20" y="39" class="title">GitHub Stats</text>
   ${rows}
   <circle cx="246" cy="107" r="35" fill="none" stroke="${ringTrack}" stroke-width="7" />
   <circle cx="246" cy="107" r="35" fill="none" stroke="#D7FF5F" stroke-width="7" stroke-linecap="round" pathLength="100" stroke-dasharray="${Math.max(5, rank.progress).toFixed(2)} 100" transform="rotate(-90 246 107)" />

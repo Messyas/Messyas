@@ -167,9 +167,9 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
   // Layout e dimensões da cena ajustados para proporção harmônica e sem espaços vazios
   const isSplit = rotCfg.layout === "split-with-radar" && config.radar?.show;
   const svgW = isSplit ? 1280 : 1000;
-  const svgH = isSplit ? 850 : 530;
+  const svgH = isSplit ? 850 : 570;
   const originX = isSplit ? 415 : 500;
-  const originY = isSplit ? 460 : 300;
+  const originY = isSplit ? 460 : 320;
 
   // Dimensões da plataforma base no plano horizontal
   const plateHalfW = (53 * stepX) / 2 + 16;

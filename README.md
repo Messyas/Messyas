@@ -94,19 +94,11 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeç
 
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-dark.svg?v=1" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-light.svg?v=1" />
-  <img height="180" alt="Estatísticas do GitHub" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-light.svg?v=1" />
-</picture> <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-dark.svg?v=1" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-light.svg?v=1" />
-  <img height="180" alt="Linguagens mais utilizadas" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-light.svg?v=1" />
-</picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-dark.svg?v=2" /><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-light.svg?v=2" /><img height="180" alt="GitHub Stats" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-light.svg?v=2" /></picture><img width="24" height="180" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/spacer.svg" alt="" /><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-dark.svg?v=2" /><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-light.svg?v=2" /><img height="180" alt="Most Used Languages" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-light.svg?v=2" /></picture>
 
 <br/>
 
-<img width="606" src="profile-3d-contrib/profile-night-rainbow.svg" alt="Contribution Timeline" />
+<img width="624" src="profile-3d-contrib/profile-night-rainbow.svg" alt="Contribution Timeline" />
 
 </div>
 
@@ -115,7 +107,7 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeç
 <div align="center">
 
 <a href="https://messyas.github.io/meu-site-portifolio/">
-  <img src="assets/portfolio-button.svg" alt="Portfólio" height="38" />
+  <img src="assets/portfolio-button.svg" alt="Portfolio" height="38" />
 </a>
 
 </div>
