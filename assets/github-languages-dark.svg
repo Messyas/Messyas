@@ -3,11 +3,11 @@
   <rect x="0.75" y="0.75" width="298.5" height="178.5" rx="5" fill="#0D0814" stroke="#3D105B" stroke-width="1.5" />
   <text x="20" y="39" class="title">Most Used Languages</text>
   <clipPath id="bar-clip"><rect x="20" y="55" width="260" height="8" rx="4" /></clipPath>
-  <g clip-path="url(#bar-clip)"><rect x="20.00" y="0" width="118.78" height="8" fill="#A855F7" /><rect x="138.78" y="0" width="69.92" height="8" fill="#D7FF5F" /><rect x="208.70" y="0" width="32.14" height="8" fill="#FDE047" /><rect x="240.84" y="0" width="16.27" height="8" fill="#B779FF" /><rect x="257.11" y="0" width="11.70" height="8" fill="#FB7185" /><rect x="268.81" y="0" width="4.87" height="8" fill="#FF4D8D" /><rect x="273.69" y="0" width="4.82" height="8" fill="#8B5CF6" /><rect x="278.50" y="0" width="1.50" height="8" fill="#E879F9" /></g>
+  <g clip-path="url(#bar-clip)"><rect x="20.00" y="0" width="118.75" height="8" fill="#A855F7" /><rect x="138.75" y="0" width="69.96" height="8" fill="#D7FF5F" /><rect x="208.72" y="0" width="32.13" height="8" fill="#FDE047" /><rect x="240.85" y="0" width="16.26" height="8" fill="#B779FF" /><rect x="257.11" y="0" width="11.70" height="8" fill="#FB7185" /><rect x="268.81" y="0" width="4.87" height="8" fill="#FF4D8D" /><rect x="273.69" y="0" width="4.82" height="8" fill="#8B5CF6" /><rect x="278.50" y="0" width="1.50" height="8" fill="#E879F9" /></g>
   <circle cx="20" cy="84" r="5" fill="#A855F7" />
-      <text x="31" y="88" class="language">TypeScript 45.68%</text>
+      <text x="31" y="88" class="language">TypeScript 45.67%</text>
 <circle cx="20" cy="105" r="5" fill="#D7FF5F" />
-      <text x="31" y="109" class="language">Python 26.89%</text>
+      <text x="31" y="109" class="language">Python 26.91%</text>
 <circle cx="20" cy="126" r="5" fill="#FDE047" />
       <text x="31" y="130" class="language">JavaScript 12.36%</text>
 <circle cx="20" cy="147" r="5" fill="#B779FF" />
