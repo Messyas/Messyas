@@ -10,6 +10,7 @@
 
 import { readFile, writeFile } from "node:fs/promises";
 import { THEME_CONFIG } from "./theme-config.mjs";
+import { batchSvgPolygons } from "./batch-svg-polygons.mjs";
 
 /**
  * Fórmula de Rotação de Rodrigues para Eixo-Ângulo (Slide 16 do PDF)
@@ -145,7 +146,14 @@ export function parseContributionDays(svgContent) {
  */
 export function generate3dRotationSvg(days, config, radarXml = null) {
   const rotCfg = config.rotation3d;
-  const numFrames = rotCfg.numFrames || 36;
+  const duration = rotCfg.duration || "6s";
+  const durationMatch = /^(\d+(?:\.\d+)?)s$/.exec(duration);
+  const durSec = durationMatch ? Number(durationMatch[1]) : 0;
+  const fps = rotCfg.fps ?? 60;
+  if (!(durSec > 0) || !(fps > 0) || !Number.isFinite(fps)) {
+    throw new Error("A duração deve ser positiva em segundos e fps deve ser positivo.");
+  }
+  const numFrames = Math.max(2, Math.round(durSec * fps));
   const pitchRad = (rotCfg.pitchAngleDeg || 28) * (Math.PI / 180);
   const Rx = createPitchMatrix(pitchRad);
 
@@ -177,6 +185,13 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
   const plateH = 5.0; // Espessura vertical da plataforma
 
   const framesSvg = [];
+  const pathStyles = new Map();
+  function renderBatch(batch) {
+    if (!pathStyles.has(batch.key)) {
+      pathStyles.set(batch.key, { name: `p${pathStyles.size}`, ...batch });
+    }
+    return `<path class="${pathStyles.get(batch.key).name}" d="${batch.dList.join("")}"/>`;
+  }
 
   for (let f = 0; f < numFrames; f++) {
     const theta = (f * (360 / numFrames)) * (Math.PI / 180);
@@ -278,25 +293,31 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
     polygons.sort((a, b) => a.z - b.z);
 
     // 4. Renderização otimizada com Path Merging consecutivo (preserva 100% o Painter's Algorithm e reduz nós do DOM em 90%)
-    let frameContent = `<g id="rot-frame-${f}" class="rot-frame rot-f${f}">`;
+    let frameContent = `<g id="rot-frame-${f}">`;
     let currentBatch = null;
 
-    for (const poly of polygons) {
+    for (const poly of batchSvgPolygons(polygons)) {
       const sx0 = Math.round(originX + poly.pts[0][0]);
       const sy0 = Math.round(originY - poly.pts[0][1]);
-      let d = `M${sx0} ${sy0}`;
+      let d = `M${sx0} ${sy0}l`;
+      let previousX = sx0;
+      let previousY = sy0;
+      const deltas = [];
       for (let i = 1; i < poly.pts.length; i++) {
-        d += `L${Math.round(originX + poly.pts[i][0])} ${Math.round(originY - poly.pts[i][1])}`;
+        const x = Math.round(originX + poly.pts[i][0]);
+        const y = Math.round(originY - poly.pts[i][1]);
+        deltas.push(x - previousX, y - previousY);
+        previousX = x;
+        previousY = y;
       }
-      d += "Z";
+      d += deltas.map((value, index) => `${index > 0 && value >= 0 ? " " : ""}${value}`).join("") + "z";
 
       const styleKey = `${poly.fill}|${poly.stroke}|${poly.strokeWidth}`;
       if (currentBatch && currentBatch.key === styleKey) {
         currentBatch.dList.push(d);
       } else {
         if (currentBatch) {
-          const strokeAttr = currentBatch.stroke !== "none" ? ` stroke="${currentBatch.stroke}" stroke-width="${currentBatch.strokeWidth}"` : "";
-          frameContent += `<path d="${currentBatch.dList.join("")}" fill="${currentBatch.fill}"${strokeAttr}/>`;
+          frameContent += renderBatch(currentBatch);
         }
         currentBatch = {
           key: styleKey,
@@ -308,33 +329,23 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
       }
     }
     if (currentBatch) {
-      const strokeAttr = currentBatch.stroke !== "none" ? ` stroke="${currentBatch.stroke}" stroke-width="${currentBatch.strokeWidth}"` : "";
-      frameContent += `<path d="${currentBatch.dList.join("")}" fill="${currentBatch.fill}"${strokeAttr}/>`;
+      frameContent += renderBatch(currentBatch);
     }
     frameContent += `</g>`;
     framesSvg.push(frameContent);
   }
 
-  // Geração do CSS e Keyframes para animação contínua e fluida em 60 FPS
-  const duration = rotCfg.duration || "2s";
-  const durSec = parseFloat(duration);
-  const frameSec = durSec / numFrames;
-  const framePct = (100 / numFrames).toFixed(3);
-
+  // Apenas uma animação: as cenas ficam em defs, fora da árvore de renderização.
+  // Um único use exibe cada quadro sem animar opacidade de centenas de grupos.
   const cssRules = [
     `* { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }`,
     `.title { font: 700 28px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #C084FC; letter-spacing: -0.2px; }`,
-    `.rot-frame { opacity: 0; }`,
-    `@keyframes cycle360 {`,
-    `  0%, ${framePct}% { opacity: 1; }`,
-    `  ${(parseFloat(framePct) + 0.001).toFixed(3)}%, 100% { opacity: 0; }`,
-    `}`,
+    ...[...pathStyles.values()].map(({ name, fill, stroke, strokeWidth }) =>
+      `.${name}{fill:${fill}${stroke !== "none" ? `;stroke:${stroke};stroke-width:${strokeWidth}` : ""}}`),
   ];
-
-  for (let i = 0; i < numFrames; i++) {
-    const delay = (-i * frameSec).toFixed(4);
-    cssRules.push(`.rot-f${i} { animation: cycle360 ${duration} infinite ${delay}s; }`);
-  }
+  const frameReferences = Array.from({ length: numFrames + 1 }, (_, i) => `#rot-frame-${i % numFrames}`).join(";");
+  const frameTimes = Array.from({ length: numFrames + 1 }, (_, i) => (i / numFrames).toFixed(9)).join(";");
+  const animation = `<use href="#rot-frame-0"><animate attributeName="href" values="${frameReferences}" keyTimes="${frameTimes}" calcMode="discrete" dur="${duration}" repeatCount="indefinite"/></use>`;
 
   // Estilização do Card idêntica aos cards superiores
   const card = config.card || {};
@@ -355,7 +366,7 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
 
   const verticalScale = rotCfg.verticalScale ?? 1;
   const verticalOffset = originY + (isSplit ? 0 : 60) - originY * verticalScale;
-  let innerBody = titleGroup + `<g transform="translate(0 ${verticalOffset}) scale(1 ${verticalScale})">` + framesSvg.join("\n") + "</g>";
+  let innerBody = titleGroup + `<g transform="translate(0 ${verticalOffset}) scale(1 ${verticalScale})">${animation}</g>`;
 
   // Adiciona o radar estilizado se configurado e em modo split
   if (isSplit && radarXml) {
@@ -368,6 +379,9 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
 ${cssRules.join("\n")}
 </style>
 ${cardClip}
+<defs>
+${framesSvg.join("\n")}
+</defs>
 ${cardRect}
 <g clip-path="url(#card-clip)">
 ${innerBody}

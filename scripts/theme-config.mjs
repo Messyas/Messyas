@@ -67,8 +67,8 @@ export const THEME_CONFIG = {
   // Configuração da Animação 3D 360 no Plano Horizontal (Matemática: Rodrigues Axis-Angle + Tait-Bryan Pitch)
   rotation3d: {
     enabled: true,              // Ativar animação de rotação 360 no plano horizontal
-    numFrames: 120,             // 120 quadros (ponto ideal de fluidez sem sobrecarga do navegador: 4.46 MB)
-    duration: "4s",             // 4s por volta completa (velocidade reduzida em 50%, suave e sem lag)
+    fps: 60,                   // Quadros por segundo; o gerador deriva a quantidade de quadros
+    duration: "6s",             // Uma volta a cada 6 segundos, 50% mais demorada
     pitchAngleDeg: 28,          // Ângulo de elevação de visão (Tait-Bryan pitch)
     layout: "full-centered",    // Opção B: destaque total centralizado na rotação 360
     verticalScale: 1.15,        // Amplia o gráfico em 15% no eixo Y
