@@ -3,15 +3,15 @@
   <rect x="0.75" y="0.75" width="298.5" height="178.5" rx="5" fill="#0D0814" stroke="#3D105B" stroke-width="1.5" />
   <text x="20" y="39" class="title">Most Used Languages</text>
   <clipPath id="bar-clip"><rect x="20" y="55" width="260" height="8" rx="4" /></clipPath>
-  <g clip-path="url(#bar-clip)"><rect x="20.00" y="0" width="117.43" height="8" fill="#A855F7" /><rect x="137.43" y="0" width="70.26" height="8" fill="#D7FF5F" /><rect x="207.69" y="0" width="33.60" height="8" fill="#FDE047" /><rect x="241.29" y="0" width="16.08" height="8" fill="#B779FF" /><rect x="257.37" y="0" width="11.57" height="8" fill="#FB7185" /><rect x="268.94" y="0" width="4.82" height="8" fill="#FF4D8D" /><rect x="273.76" y="0" width="4.76" height="8" fill="#8B5CF6" /><rect x="278.52" y="0" width="1.48" height="8" fill="#E879F9" /></g>
+  <g clip-path="url(#bar-clip)"><rect x="20.00" y="0" width="117.36" height="8" fill="#A855F7" /><rect x="137.36" y="0" width="70.22" height="8" fill="#D7FF5F" /><rect x="207.58" y="0" width="33.72" height="8" fill="#FDE047" /><rect x="241.31" y="0" width="16.07" height="8" fill="#B779FF" /><rect x="257.38" y="0" width="11.56" height="8" fill="#FB7185" /><rect x="268.95" y="0" width="4.82" height="8" fill="#FF4D8D" /><rect x="273.76" y="0" width="4.76" height="8" fill="#8B5CF6" /><rect x="278.52" y="0" width="1.48" height="8" fill="#E879F9" /></g>
   <circle cx="20" cy="84" r="5" fill="#A855F7" />
-      <text x="31" y="88" class="language">TypeScript 45.16%</text>
+      <text x="31" y="88" class="language">TypeScript 45.14%</text>
 <circle cx="20" cy="105" r="5" fill="#D7FF5F" />
-      <text x="31" y="109" class="language">Python 27.02%</text>
+      <text x="31" y="109" class="language">Python 27.01%</text>
 <circle cx="20" cy="126" r="5" fill="#FDE047" />
-      <text x="31" y="130" class="language">JavaScript 12.92%</text>
+      <text x="31" y="130" class="language">JavaScript 12.97%</text>
 <circle cx="20" cy="147" r="5" fill="#B779FF" />
-      <text x="31" y="151" class="language">C++ 6.19%</text>
+      <text x="31" y="151" class="language">C++ 6.18%</text>
 <circle cx="158" cy="84" r="5" fill="#FB7185" />
       <text x="169" y="88" class="language">Java 4.45%</text>
 <circle cx="158" cy="105" r="5" fill="#FF4D8D" />
