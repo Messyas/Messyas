@@ -3,6 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:banners": "node scripts/generate-banners.mjs",
+    "test:banners": "node --test scripts/banner.test.mjs",
     "build:animation": "node scripts/generate-animation-webp.mjs",
     "test": "node --test scripts/animation.test.mjs"
   },

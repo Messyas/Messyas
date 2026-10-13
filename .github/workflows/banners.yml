@@ -1,0 +1,37 @@
+name: Profile Banners
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/banner-config.mjs"
+      - "scripts/topographic-field.mjs"
+      - "scripts/generate-banners.mjs"
+      - ".github/workflows/banners.yml"
+      - "package.json"
+      - "package-lock.json"
+permissions:
+  contents: write
+jobs:
+  banners:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run build:banners
+      - run: npm run test:banners
+      - name: Salvar banners e seleção do README
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/topographic-banner.webp assets/topographic-banner.png README.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: atualizar banners do perfil [skip ci]"
+            for i in {1..5}; do
+              git pull --rebase -X theirs origin main && git push && break || sleep 3
+            done
+          fi
