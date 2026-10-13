@@ -1,4 +1,5 @@
 import { mkdir, writeFile } from "node:fs/promises";
+import { renderProfileOverview } from "./render-profile-overview.mjs";
 
 const username = process.env.PROFILE_USERNAME;
 const token = process.env.METRICS_TOKEN;
@@ -125,6 +126,8 @@ function renderStatsCard({ background, border, title, text, ringTrack }) {
 
 await mkdir("assets", { recursive: true });
 await Promise.all([
+  writeFile("assets/github-overview-dark.svg", renderProfileOverview(stats, languages, rankFor(stats), { background: "#0D0814", border: "#3D105B", title: "#C084FC", text: "#ECE6F0", ringTrack: "#3D105B" })),
+  writeFile("assets/github-overview-light.svg", renderProfileOverview(stats, languages, rankFor(stats), { background: "#FAF5FF", border: "#D8B4FE", title: "#6B21A8", text: "#1E1035", ringTrack: "#D8B4FE" })),
   writeFile("assets/github-languages-dark.svg", renderCard({ background: "#0D0814", border: "#3D105B", title: "#C084FC", text: "#ECE6F0" })),
   writeFile("assets/github-languages-light.svg", renderCard({ background: "#FAF5FF", border: "#D8B4FE", title: "#6B21A8", text: "#1E1035" })),
   writeFile("assets/github-stats-dark.svg", renderStatsCard({ background: "#0D0814", border: "#3D105B", title: "#C084FC", text: "#ECE6F0", ringTrack: "#3D105B" })),

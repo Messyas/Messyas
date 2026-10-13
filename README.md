@@ -94,11 +94,15 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeç
 
 <div align="center">
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-dark.svg?v=2" /><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-light.svg?v=2" /><img height="180" alt="GitHub Stats" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-stats-light.svg?v=2" /></picture><img width="24" height="180" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/spacer.svg" alt="" /><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-dark.svg?v=2" /><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-light.svg?v=2" /><img height="180" alt="Most Used Languages" src="https://raw.githubusercontent.com/Messyas/Messyas/main/assets/github-languages-light.svg?v=2" /></picture>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/github-overview-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="assets/github-overview-light.svg" />
+  <img width="100%" alt="GitHub Stats and Most Used Languages" src="assets/github-overview-light.svg" />
+</picture>
 
 <br/>
 
-<img width="624" src="profile-3d-contrib/profile-night-rainbow.svg" alt="Contribution Timeline" />
+<img width="100%" src="profile-3d-contrib/profile-night-rainbow.svg" alt="Contribution Timeline" />
 
 </div>
 
