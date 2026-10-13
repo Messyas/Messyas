@@ -1,5 +1,5 @@
 <!-- profile-banner:header -->
-<picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/topographic-banner.png" /><img width="100%" src="assets/topographic-banner.webp" alt="Cabeçalho com curvas de nível roxas animadas" /></picture>
+![Cabeçalho ondulado em tons de roxo, violeta e sombras metálicas](https://capsule-render.vercel.app/api?type=waving&color=0:0D0814,25:3D105B,60:7928CA,85:A855F7,100:D8B4FE&height=110&section=header)
 <!-- /profile-banner:header -->
 
 <div align="center">
@@ -119,5 +119,5 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeç
 </div>
 
 <!-- profile-banner:footer -->
-<picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/topographic-banner.png" /><img width="100%" src="assets/topographic-banner.webp" alt="Rodapé com curvas de nível roxas animadas" /></picture>
+![Rodapé ondulado em tons de roxo, violeta e sombras metálicas](https://capsule-render.vercel.app/api?type=waving&color=0:D8B4FE,25:A855F7,55:7928CA,80:3D105B,100:0D0814&height=110&section=footer)
 <!-- /profile-banner:footer -->

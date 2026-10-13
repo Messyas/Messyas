@@ -1,6 +1,6 @@
 export const BANNER_CONFIG = {
   // "capsule": faixas originais; "topographic": curvas de nível animadas.
-  mode: "topographic",
+  mode: "capsule",
   width: 480,
   height: 66,
   fps: 60,
