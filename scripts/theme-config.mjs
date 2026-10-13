@@ -71,6 +71,7 @@ export const THEME_CONFIG = {
     duration: "4s",             // 4s por volta completa (velocidade reduzida em 50%, suave e sem lag)
     pitchAngleDeg: 28,          // Ângulo de elevação de visão (Tait-Bryan pitch)
     layout: "full-centered",    // Opção B: destaque total centralizado na rotação 360
+    verticalScale: 1.15,        // Amplia o gráfico em 15% no eixo Y
     gridSpacingX: 16.5,         // Espaçamento entre semanas no plano horizontal
     gridSpacingZ: 28.0,         // Espaçamento entre dias da semana no plano horizontal
     blockWidth: 12.5,           // Largura do bloco de contribuição

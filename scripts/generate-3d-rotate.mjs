@@ -167,7 +167,7 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
   // Layout e dimensões da cena ajustados para proporção harmônica e sem espaços vazios
   const isSplit = rotCfg.layout === "split-with-radar" && config.radar?.show;
   const svgW = isSplit ? 1280 : 1000;
-  const svgH = isSplit ? 850 : 570;
+  const svgH = isSplit ? 850 : 660;
   const originX = isSplit ? 415 : 500;
   const originY = isSplit ? 460 : 320;
 
@@ -353,7 +353,9 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
   // Título estilizado identicamente aos cards superiores (sem '360°', sem subtítulo, alinhado à esquerda)
   const titleGroup = `<text x="35" y="52" class="title">Contribution Timeline</text>`;
 
-  let innerBody = titleGroup + framesSvg.join("\n");
+  const verticalScale = rotCfg.verticalScale ?? 1;
+  const verticalOffset = originY + (isSplit ? 0 : 60) - originY * verticalScale;
+  let innerBody = titleGroup + `<g transform="translate(0 ${verticalOffset}) scale(1 ${verticalScale})">` + framesSvg.join("\n") + "</g>";
 
   // Adiciona o radar estilizado se configurado e em modo split
   if (isSplit && radarXml) {
