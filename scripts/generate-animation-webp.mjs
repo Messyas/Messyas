@@ -22,18 +22,19 @@ export async function generateAnimationWebp(input, output) {
   if (!template.includes("<!--current-frame-->")) throw new Error("Referência da animação ausente.");
   const directory = await mkdtemp(join(tmpdir(), "messyas-webp-"));
   const files = [];
+  const webp = THEME_CONFIG.rotation3d.webp ?? { width: 1000, quality: 90, effort: 4 };
   sharp.cache({ memory: 64, files: 20, items: 100 });
   try {
     for (let index = 0; index < frames.length; index++) {
       const file = join(directory, `${index}.png`);
       const frame = template.replace("<!--current-frame-->", frames[index][0]);
-      await sharp(Buffer.from(frame)).png().toFile(file);
+      await sharp(Buffer.from(frame)).resize({ width: webp.width }).png().toFile(file);
       files.push(file);
       if ((index + 1) % 60 === 0) console.log(`Rasterizados ${index + 1}/${frames.length} quadros.`);
     }
     const durationMs = Math.round(Number.parseFloat(THEME_CONFIG.rotation3d.duration) * 1000);
     const result = await sharp(files, { join: { animated: true } })
-      .webp({ quality: 90, mixed: true, effort: 4, loop: 0, delay: frameDelays(frames.length, durationMs) })
+      .webp({ quality: webp.quality, effort: webp.effort, minSize: true, smartSubsample: true, loop: 0, delay: frameDelays(frames.length, durationMs) })
       .toFile(output);
     console.log(`WebP gerado: ${result.width}x${result.pageHeight}, ${result.pages} quadros, ${(result.size / 1e6).toFixed(2)} MB.`);
     return result;

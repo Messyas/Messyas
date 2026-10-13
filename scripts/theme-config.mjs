@@ -69,6 +69,11 @@ export const THEME_CONFIG = {
     enabled: true,              // Ativar animação de rotação 360 no plano horizontal
     fps: 60,                   // Quadros por segundo; o gerador deriva a quantidade de quadros
     duration: "6s",             // Uma volta a cada 6 segundos, 50% mais demorada
+    webp: {
+      width: 800,               // Tamanho próximo da área útil do README, exibido com 100% de largura
+      quality: 75,              // Compressão para acelerar o primeiro carregamento
+      effort: 6,                // Mais trabalho na geração, menos bytes para baixar
+    },
     pitchAngleDeg: 28,          // Ângulo de elevação de visão (Tait-Bryan pitch)
     layout: "full-centered",    // Opção B: destaque total centralizado na rotação 360
     verticalScale: 1.15,        // Amplia o gráfico em 15% no eixo Y

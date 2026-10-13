@@ -107,8 +107,9 @@ test("README exibe WebP decodificável com 360 quadros, 6 segundos e loop infini
   const path = "profile-3d-contrib/contribution-timeline.webp";
   const metadata = await sharp(path, { animated: true }).metadata();
   assert.equal(metadata.format, "webp");
-  assert.equal(metadata.width, 1000);
-  assert.equal(metadata.pageHeight, 660);
+  const width = THEME_CONFIG.rotation3d.webp?.width ?? 1000;
+  assert.equal(metadata.width, width);
+  assert.equal(metadata.pageHeight, Math.round(660 * width / 1000));
   assert.equal(metadata.pages, 360);
   assert.equal(metadata.loop, 0);
   assert.deepEqual(metadata.delay, frameDelays(360, 6000));
