@@ -11,6 +11,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { THEME_CONFIG } from "./theme-config.mjs";
 import { batchSvgPolygons } from "./batch-svg-polygons.mjs";
+import { languageWaveColor } from "./language-wave.mjs";
 
 /**
  * Fórmula de Rotação de Rodrigues para Eixo-Ângulo (Slide 16 do PDF)
@@ -92,6 +93,8 @@ function shadeColor(hex, factor) {
  * Extrai a malha de contribuições diárias do SVG base
  */
 export function parseContributionDays(svgContent) {
+  const savedDays = svgContent.match(/<metadata id="contribution-days">([^<]+)<\/metadata>/);
+  if (savedDays) return JSON.parse(savedDays[1]);
   const groupRegex = /<g\b[^>]*transform="translate\(([-0-9.]+)\s+([-0-9.]+)\)"[^>]*>([\s\S]*?)<\/g>/g;
   let match;
   const daysMap = new Map();
@@ -144,7 +147,7 @@ export function parseContributionDays(svgContent) {
 /**
  * Gera os quadros e o SVG da animação 3D com rotação 360 no plano horizontal
  */
-export function generate3dRotationSvg(days, config, radarXml = null) {
+export function generate3dRotationSvg(days, config, radarXml = null, languagePalette = config.rotation3d.languageWave?.palette) {
   const rotCfg = config.rotation3d;
   const duration = rotCfg.duration || "6s";
   const durationMatch = /^(\d+(?:\.\d+)?)s$/.exec(duration);
@@ -154,6 +157,11 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
     throw new Error("A duração deve ser positiva em segundos e fps deve ser positivo.");
   }
   const numFrames = Math.max(2, Math.round(durSec * fps));
+  const colorMode = rotCfg.colorMode ?? "activity";
+  if (!["activity", "language-wave"].includes(colorMode)) throw new Error(`Modo de cores inválido: ${colorMode}`);
+  if (colorMode === "language-wave" && (!Number.isInteger(rotCfg.languageWave.cyclesPerRotation) || rotCfg.languageWave.cyclesPerRotation < 1)) {
+    throw new Error("cyclesPerRotation deve ser um inteiro positivo para fechar o loop da onda.");
+  }
   const pitchRad = (rotCfg.pitchAngleDeg || 28) * (Math.PI / 180);
   const Rx = createPitchMatrix(pitchRad);
 
@@ -187,6 +195,10 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
   const framesSvg = [];
   const pathStyles = new Map();
   function renderBatch(batch) {
+    if (colorMode === "language-wave") {
+      const stroke = batch.stroke !== "none" ? ` stroke="${batch.stroke}" stroke-width="${batch.strokeWidth}"` : "";
+      return `<path fill="${batch.fill}"${stroke} d="${batch.dList.join("")}"/>`;
+    }
     if (!pathStyles.has(batch.key)) {
       pathStyles.set(batch.key, { name: `p${pathStyles.size}`, ...batch });
     }
@@ -240,7 +252,9 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
       const px = (item.w - cw) * stepX;
       const pz = (item.d - cd) * stepZ;
       const h = rotCfg.levelHeights[item.level] ?? 2.2;
-      const baseColor = config.levels[`level${item.level}`] || "#1E1035";
+      const baseColor = colorMode === "language-wave"
+        ? languageWaveColor(item, f / numFrames, rotCfg.languageWave, languagePalette)
+        : config.levels[`level${item.level}`] || "#1E1035";
 
       // Vértices 3D do paralelepípedo
       const c = [
@@ -375,6 +389,7 @@ export function generate3dRotationSvg(days, config, radarXml = null) {
 
   const svgOutput = `
 <svg xmlns="http://www.w3.org/2000/svg" width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}">
+<metadata id="contribution-days">${JSON.stringify(days.map(({ w, d, level }) => ({ w, d, level })))}</metadata>
 <style>
 ${cssRules.join("\n")}
 </style>

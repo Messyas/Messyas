@@ -72,6 +72,16 @@ export const THEME_CONFIG = {
     pitchAngleDeg: 28,          // Ângulo de elevação de visão (Tait-Bryan pitch)
     layout: "full-centered",    // Opção B: destaque total centralizado na rotação 360
     verticalScale: 1.15,        // Amplia o gráfico em 15% no eixo Y
+    // Escolha: "activity" (cores por atividade) ou "language-wave" (onda de linguagens).
+    colorMode: "language-wave",
+    languageWave: {
+      cyclesPerRotation: 1,     // Inteiro: mantém a onda contínua na passagem do loop
+      spatialCycles: 1,        // Uma onda distribuída pelas 53 semanas
+      emptyBrightness: 0.22,   // Dias vazios recebem a onda em tons mais escuros
+      activityBrightness: { 1: 0.55, 2: 0.72, 3: 0.9, 4: 1 },
+      // Reserva; a geração lê as cores atuais de assets/github-overview-dark.svg.
+      palette: ["#A855F7", "#D7FF5F", "#FDE047", "#B779FF", "#FB7185", "#FF4D8D", "#8B5CF6", "#E879F9"],
+    },
     gridSpacingX: 16.5,         // Espaçamento entre semanas no plano horizontal
     gridSpacingZ: 28.0,         // Espaçamento entre dias da semana no plano horizontal
     blockWidth: 12.5,           // Largura do bloco de contribuição

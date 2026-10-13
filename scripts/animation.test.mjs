@@ -5,10 +5,41 @@ import { batchSvgPolygons } from "./batch-svg-polygons.mjs";
 import { THEME_CONFIG } from "./theme-config.mjs";
 import sharp from "sharp";
 import { frameDelays } from "./generate-animation-webp.mjs";
+import { languageWaveColor, parseLanguagePalette } from "./language-wave.mjs";
+import { generate3dRotationSvg, parseContributionDays } from "./generate-3d-rotate.mjs";
 
 const face = (id, x, y, width, height, fill) => ({
   id, pts: [[x, y, 0], [x + width, y, 0], [x + width, y + height, 0], [x, y + height, 0]],
   fill, stroke: "none", strokeWidth: 0,
+});
+
+test("onda usa as cores do card, percorre as semanas e fecha sem salto de cor", async () => {
+  const palette = parseLanguagePalette(await readFile("assets/github-overview-dark.svg", "utf8"));
+  const settings = THEME_CONFIG.rotation3d.languageWave;
+  const item = { w: 0, d: 0, level: 4 };
+  assert.equal(languageWaveColor(item, 0, settings, palette).toUpperCase(), palette[0]);
+  assert.equal(languageWaveColor(item, 1, settings, palette), languageWaveColor(item, 0, settings, palette));
+  assert.notEqual(languageWaveColor(item, 0, settings, palette), languageWaveColor({ ...item, w: 26 }, 0, settings, palette));
+  // O mesmo tom segue a onda: avança 53/4 semanas após 1/4 de volta.
+  assert.equal(languageWaveColor({ ...item, w: 53 / 4 }, 0.25, settings, palette), languageWaveColor(item, 0, settings, palette));
+  const rgb = (hex) => hex.slice(1).match(/../g).map((channel) => parseInt(channel, 16));
+  for (let index = 0; index < 360; index++) {
+    const previous = rgb(languageWaveColor(item, index / 360, settings, palette));
+    const next = rgb(languageWaveColor(item, (index + 1) / 360, settings, palette));
+    assert.ok(next.every((channel, axis) => Math.abs(channel - previous[axis]) <= 6));
+  }
+  const empty = rgb(languageWaveColor({ ...item, level: 0 }, 0, settings, palette));
+  assert.ok(empty.every((channel, axis) => channel < rgb(palette[0])[axis]));
+});
+
+test("modo por atividade continua disponível e os dados sobrevivem à regeneração", () => {
+  const days = [{ w: 0, d: 0, level: 4 }, { w: 1, d: 0, level: 0 }];
+  const config = { ...THEME_CONFIG, rotation3d: { ...THEME_CONFIG.rotation3d, duration: "1s", fps: 2, colorMode: "activity" } };
+  const activity = generate3dRotationSvg(days, config);
+  const wave = generate3dRotationSvg(days, { ...config, rotation3d: { ...config.rotation3d, colorMode: "language-wave" } });
+  assert.notEqual(activity, wave);
+  assert.deepEqual(parseContributionDays(wave), days);
+  assert.deepEqual(parseContributionDays(activity), days);
 });
 
 test("faces separadas podem ser agrupadas, mantendo a ordem das sobreposições", () => {

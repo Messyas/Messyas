@@ -2,6 +2,7 @@ import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { THEME_CONFIG } from "./theme-config.mjs";
 import { parseContributionDays, generate3dRotationSvg } from "./generate-3d-rotate.mjs";
+import { parseLanguagePalette } from "./language-wave.mjs";
 
 const dir = "profile-3d-contrib";
 
@@ -210,6 +211,12 @@ function cleanAndThemeSvg(content, fallbackRadar) {
 
 async function main() {
   try {
+    let languagePalette = THEME_CONFIG.rotation3d.languageWave.palette;
+    try {
+      languagePalette = parseLanguagePalette(await readFile("assets/github-overview-dark.svg", "utf8"));
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
     let fallbackRadar = null;
     try {
       fallbackRadar = await readFile("scripts/radar-snippet.xml", "utf8");
@@ -226,7 +233,7 @@ async function main() {
       // Se a rotação 3D estiver ativa e for o arquivo principal profile-night-rainbow.svg (usado no README)
       if (THEME_CONFIG.rotation3d?.enabled && file === "profile-night-rainbow.svg") {
         let rawSource = original;
-        if (!original.includes("cont-top-") && !original.includes("rb-l")) {
+        if (!original.includes("cont-top-") && !original.includes("rb-l") && !original.includes('id="contribution-days"')) {
           try {
             rawSource = await readFile(join(dir, "profile-green.svg"), "utf8");
           } catch {
@@ -246,7 +253,7 @@ async function main() {
           }
         }
 
-        const rotatedSvg = generate3dRotationSvg(days, THEME_CONFIG, themedRadar);
+        const rotatedSvg = generate3dRotationSvg(days, THEME_CONFIG, themedRadar, languagePalette);
         await writeFile(filePath, rotatedSvg, "utf8");
         // Também gera o arquivo dedicado profile-360-horizontal.svg
         await writeFile(join(dir, "profile-360-horizontal.svg"), rotatedSvg, "utf8");
