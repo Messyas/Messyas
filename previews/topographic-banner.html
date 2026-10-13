@@ -18,8 +18,9 @@
 <canvas aria-label="Curvas de nível animadas na parte inferior da tela"></canvas>
 <main>
   <h1>Curvas de nível em movimento</h1>
-  <p>Ruído Simplex com distorção de domínio. O fluxo ocupa os 35% inferiores da tela e completa um ciclo a cada seis segundos.</p>
+  <p>Ruído Simplex com distorção de domínio. O fluxo ocupa os 35% inferiores da tela e completa um ciclo a cada dez segundos. O espaço entre as linhas é transparente.</p>
   <label>Paleta <select id="palette"><option value="violet">Violeta</option><option value="teal">Verde-água</option></select></label>
+  <label>Fundo da prévia <select id="background"><option value="dark">Escuro</option><option value="light">Claro</option></select></label>
   <button id="pause" type="button">Pausar</button>
   <p id="status" role="status"></p>
 </main>
@@ -31,6 +32,7 @@
   if (!gl) { status.textContent = 'WebGL não está disponível neste navegador.'; return; }
   const vertex = `attribute vec2 a_position; void main(){gl_Position=vec4(a_position,0.,1.);}`;
   const fragment = `
+    #extension GL_OES_standard_derivatives : enable
     precision highp float;
     uniform vec2 u_resolution;
     uniform float u_time;
@@ -54,18 +56,19 @@
       vec2 st=gl_FragCoord.xy/u_resolution;
       // Descartar antes de calcular qualquer ruído acima do painel inferior.
       if(st.y>=.35) { gl_FragColor=vec4(0.); return; }
-      float phase=u_time*6.28318530718/6.;
-      vec2 t=vec2(cos(phase),sin(phase))*.35;
-      vec2 p=st*vec2(2.2,4.);
+      float phase=u_time*6.28318530718/10.;
+      vec2 t=vec2(cos(phase),sin(phase))*.22;
+      vec2 p=st*vec2(3.,3.5);
       vec2 q=vec2(snoise(p+t),snoise(p+vec2(5.2,1.3)+t));
-      vec2 r=vec2(snoise(p+.45*q+vec2(1.7,9.2)+vec2(-t.y,t.x)),snoise(p+.45*q+vec2(8.3,2.8)+vec2(-t.y,t.x)));
-      float field=.2*snoise(p+.35*r)+p.y*.8;
-      float band=abs(sin(field*12.));
-      float line=(1.-step(.4,band))*(1.-smoothstep(.15,.4,band));
-      float fade=1.-smoothstep(.12,.35,st.y);
+      vec2 r=vec2(snoise(p+.2*q+vec2(1.7,9.2)+vec2(-t.y,t.x)),snoise(p+.2*q+vec2(8.3,2.8)+vec2(-t.y,t.x)));
+      float field=.8*snoise(p+.2*r)+p.y*.02;
+      float band=abs(sin(field*28.));
+      float aa=clamp(fwidth(field)*28.*.5,.06,.35);
+      float line=(1.-step(.55+aa,band))*(1.-smoothstep(.55-aa,.55+aa,band));
+      float fade=1.-smoothstep(.27,.35,st.y);
       float x=st.x*2.;
       vec3 color=x<1.?mix(u_color0,u_color1,x):mix(u_color1,u_color2,x-1.);
-      gl_FragColor=vec4(color,line*fade*(.55+.35*smoothstep(0.,1.,st.x)));
+      gl_FragColor=vec4(color,floor(line*fade*3.+.5)/3.);
     }`;
   function compile(type, source) {
     const shader=gl.createShader(type); gl.shaderSource(shader,source); gl.compileShader(shader);
@@ -73,6 +76,7 @@
     return shader;
   }
   try {
+    if (!gl.getExtension('OES_standard_derivatives')) throw new Error('Antialiasing do shader indisponível.');
     const program=gl.createProgram();
     gl.attachShader(program,compile(gl.VERTEX_SHADER,vertex)); gl.attachShader(program,compile(gl.FRAGMENT_SHADER,fragment)); gl.linkProgram(program);
     if(!gl.getProgramParameter(program,gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
@@ -81,9 +85,15 @@
     gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
     const attribute=gl.getAttribLocation(program,'a_position'); gl.enableVertexAttribArray(attribute); gl.vertexAttribPointer(attribute,2,gl.FLOAT,false,0,0);
     const resolution=gl.getUniformLocation(program,'u_resolution'), time=gl.getUniformLocation(program,'u_time');
-    const palettes={violet:['7928ca','c084fc','d8b4fe'],teal:['0d9488','2dd4bf','99f6e4']};
+    const palettes={violet:['c084fc','c084fc','c084fc'],teal:['8ecfae','8ecfae','8ecfae']};
     function setPalette(name) { palettes[name].forEach((hex,i)=>gl.uniform3f(gl.getUniformLocation(program,`u_color${i}`),...hex.match(/../g).map(x=>parseInt(x,16)/255))); }
     setPalette('violet'); document.querySelector('#palette').onchange=e=>{setPalette(e.target.value);draw();};
+    document.querySelector('#background').onchange=e=>{
+      const light=e.target.value==='light';
+      document.documentElement.style.background=light?'#f0f3f6':'#0d1117';
+      document.querySelector('main').style.color=light?'#1e1035':'#ece6f0';
+      document.querySelector('main p').style.color=light?'#6b21a8':'#d8b4fe';
+    };
     let elapsed=0,last=0,request=0;
     let paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const button=document.querySelector('#pause');
