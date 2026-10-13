@@ -22,6 +22,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Instalar renderizador dos quadros
+        run: npm ci
+
       - uses: yoshi389111/github-profile-3d-contrib@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -29,6 +37,9 @@ jobs:
 
       - name: Gerar animacao 3D 360 no plano horizontal e aplicar tema
         run: node scripts/clean-3d-contrib.mjs
+
+      - name: Gerar animacao pre-renderizada para o README
+        run: npm run build:animation
 
       - name: Validar quadros e continuidade da animacao
         run: node --test scripts/animation.test.mjs

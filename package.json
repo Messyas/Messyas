@@ -1,0 +1,12 @@
+{
+  "name": "messyas-profile-assets",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:animation": "node scripts/generate-animation-webp.mjs",
+    "test": "node --test scripts/animation.test.mjs"
+  },
+  "devDependencies": {
+    "sharp": "0.35.5"
+  }
+}

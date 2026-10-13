@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { batchSvgPolygons } from "./batch-svg-polygons.mjs";
 import { THEME_CONFIG } from "./theme-config.mjs";
+import sharp from "sharp";
+import { frameDelays } from "./generate-animation-webp.mjs";
 
 const face = (id, x, y, width, height, fill) => ({
   id, pts: [[x, y, 0], [x + width, y, 0], [x + width, y + height, 0], [x, y + height, 0]],
@@ -36,7 +38,7 @@ test("agrupamento preserva todas as faces e suas sobreposições em cenas variad
   }
 });
 
-test("SVG entregue tem uma única animação, 60 fps e loop sem lacunas", async () => {
+test("SVG de origem tem uma única animação, 60 fps programados e loop sem lacunas", async () => {
   const svg = await readFile("profile-3d-contrib/profile-night-rainbow.svg", "utf8");
   assert.equal((svg.match(/<animate\b/g) ?? []).length, 1);
   assert.ok(!svg.includes("opacity:") && !svg.includes("@keyframes"));
@@ -57,4 +59,31 @@ test("SVG entregue tem uma única animação, 60 fps e loop sem lacunas", async 
   assert.equal(references[0], references.at(-1));
   assert.ok(svg.indexOf('<g id="rot-frame-0"') > svg.indexOf("<defs>"));
   assert.equal(svg, await readFile("profile-3d-contrib/profile-360-horizontal.svg", "utf8"));
+});
+
+test("tempos inteiros de WebP preservam 60 quadros por segundo sem acumular atraso", () => {
+  const delays = frameDelays(360, 6000);
+  assert.equal(delays.reduce((sum, delay) => sum + delay, 0), 6000);
+  assert.ok(delays.every((delay) => delay === 16 || delay === 17));
+  let elapsed = 0;
+  for (let index = 0; index < delays.length; index++) {
+    elapsed += delays[index];
+    assert.ok(Math.abs(elapsed - (index + 1) * 1000 / 60) <= 0.5);
+  }
+});
+
+test("README exibe WebP decodificável com 360 quadros, 6 segundos e loop infinito", async () => {
+  const path = "profile-3d-contrib/contribution-timeline.webp";
+  const metadata = await sharp(path, { animated: true }).metadata();
+  assert.equal(metadata.format, "webp");
+  assert.equal(metadata.width, 1000);
+  assert.equal(metadata.pageHeight, 660);
+  assert.equal(metadata.pages, 360);
+  assert.equal(metadata.loop, 0);
+  assert.deepEqual(metadata.delay, frameDelays(360, 6000));
+  const readme = await readFile("README.md", "utf8");
+  assert.ok(readme.includes(`width="100%" src="${path}"`));
+  const frames = await Promise.all([0, 90, 180, 270].map((page) => sharp(path, { page, pages: 1 }).png().toBuffer()));
+  assert.ok(frames.every((frame) => frame.length > 1000));
+  for (let index = 1; index < frames.length; index++) assert.ok(!frames[0].equals(frames[index]));
 });

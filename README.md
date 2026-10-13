@@ -102,7 +102,7 @@ Altamente hiperbólico, viciado em Warhammer e em desenhar tsunderes. Sou cabeç
 
 <br/>
 
-<img width="100%" src="profile-3d-contrib/profile-night-rainbow.svg" alt="Contribution Timeline" />
+<img width="100%" src="profile-3d-contrib/contribution-timeline.webp" alt="Contribution Timeline" />
 
 </div>
 
