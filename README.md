@@ -101,6 +101,7 @@ Highly hyperbolic, addicted to Warhammer and to drawing tsunderes. I'm hard-head
 
 ![k6](https://img.shields.io/badge/k6-13091F?style=flat-square&logo=k6&logoWidth=18&logoColor=F43F7E)
 ![Selenium](https://img.shields.io/badge/Selenium-13091F?style=flat-square&logo=selenium&logoWidth=18&logoColor=EC4899)
+![Cypress](https://img.shields.io/badge/Cypress-13091F?style=flat-square&logo=cypress&logoWidth=18&logoColor=FB4773)
 ![Postman](https://img.shields.io/badge/Postman-13091F?style=flat-square&logo=postman&logoWidth=18&logoColor=FF2A5F)
 ![Prometheus](https://img.shields.io/badge/Prometheus-13091F?style=flat-square&logo=prometheus&logoWidth=18&logoColor=C048E8)
 ![Grafana](https://img.shields.io/badge/Grafana-13091F?style=flat-square&logo=grafana&logoWidth=18&logoColor=D946EF)
