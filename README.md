@@ -1,7 +1,5 @@
 <!-- profile-banner:header -->
-
 ![Wavy header in shades of purple, violet and metallic shadows](https://capsule-render.vercel.app/api?type=waving&color=0:0D0814,25:3D105B,60:7928CA,85:A855F7,100:D8B4FE&height=110&section=header)
-
 <!-- /profile-banner:header -->
 
 <div align="center">
@@ -136,7 +134,5 @@ Highly hyperbolic, addicted to Warhammer and to drawing tsunderes. I'm hard-head
 </div>
 
 <!-- profile-banner:footer -->
-
 ![Wavy footer in shades of purple, violet and metallic shadows](https://capsule-render.vercel.app/api?type=waving&color=0:D8B4FE,25:A855F7,55:7928CA,80:3D105B,100:0D0814&height=110&section=footer)
-
 <!-- /profile-banner:footer -->
