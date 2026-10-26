@@ -4,7 +4,7 @@ import { BANNER_CONFIG as config } from "./banner-config.mjs";
 import { renderContourFrame } from "./topographic-field.mjs";
 import { frameDelays } from "./generate-animation-webp.mjs";
 
-const capsule = (section) => `![${section === "header" ? "Cabeçalho" : "Rodapé"} ondulado em tons de roxo, violeta e sombras metálicas](https://capsule-render.vercel.app/api?type=waving&color=${section === "header" ? "0:0D0814,25:3D105B,60:7928CA,85:A855F7,100:D8B4FE" : "0:D8B4FE,25:A855F7,55:7928CA,80:3D105B,100:0D0814"}&height=110&section=${section})`;
+const capsule = (section) => `![${section === "header" ? "Wavy header" : "Wavy footer"} in shades of purple, violet and metallic shadows](https://capsule-render.vercel.app/api?type=waving&color=${section === "header" ? "0:0D0814,25:3D105B,60:7928CA,85:A855F7,100:D8B4FE" : "0:D8B4FE,25:A855F7,55:7928CA,80:3D105B,100:0D0814"}&height=110&section=${section})`;
 if (!["capsule", "topographic"].includes(config.mode)) throw new Error("Modo de banner inválido.");
 if (config.mode === "topographic") {
   const { width, height, fps, durationSeconds } = config;
@@ -25,7 +25,7 @@ if (config.mode === "topographic") {
 }
 let readme = await readFile("README.md", "utf8");
 for (const section of ["header", "footer"]) {
-  const content = config.mode === "capsule" ? capsule(section) : `<picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/topographic-banner.png" /><img width="100%" src="assets/topographic-banner.webp" alt="${section === "header" ? "Cabeçalho" : "Rodapé"} com curvas de nível roxas animadas" /></picture>`;
+  const content = config.mode === "capsule" ? capsule(section) : `<picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/topographic-banner.png" /><img width="100%" src="assets/topographic-banner.webp" alt="${section === "header" ? "Header" : "Footer"} with animated purple contour lines" /></picture>`;
   const block = `<!-- profile-banner:${section} -->\n${content}\n<!-- /profile-banner:${section} -->`;
   const marker = new RegExp(`<!-- profile-banner:${section} -->[\\s\\S]*?<!-- /profile-banner:${section} -->`);
   const original = new RegExp(`!\\[[^\\n]*\\]\\(https://capsule-render\\.vercel\\.app/api\\?[^\\n]*section=${section}\\)`);
