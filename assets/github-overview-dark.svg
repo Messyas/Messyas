@@ -11,7 +11,7 @@
   <path d="M480 32v176" stroke="#3D105B" />
   <text x="32" y="44" class="title">GitHub Stats</text>
   <g transform="translate(32 76)" class="icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m10 1 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L10 15.3l-5.6 2.9 1.1-6.2L1 7.6l6.2-.9Z" fill="currentColor" stroke="none" /></g>
-  <text x="66" y="92" class="label">Total Stars:</text><text x="290" y="92" class="value">2</text>
+  <text x="66" y="92" class="label">Total Stars:</text><text x="290" y="92" class="value">3</text>
   <g transform="translate(32 112)" class="icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7a7 7 0 1 0 1 6M16 2v5h-5" /></g>
   <text x="66" y="128" class="label">Total Commits:</text><text x="290" y="128" class="value">1494</text>
   <g transform="translate(32 148)" class="icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="4" r="2" /><circle cx="5" cy="16" r="2" /><circle cx="15" cy="16" r="2" /><path d="M5 6v8m5-11h2a3 3 0 0 1 3 3v8m-5-11 3-2m-3 2 3 2" /></g>
@@ -19,17 +19,17 @@
   <g transform="translate(32 184)" class="icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8" /><path d="M10 5v6m0 3v1" /></g>
   <text x="66" y="200" class="label">Total Issues:</text><text x="290" y="200" class="value">20</text>
   <circle cx="388" cy="140" r="46" fill="none" stroke="#3D105B" stroke-width="9" />
-  <circle cx="388" cy="140" r="46" fill="none" stroke="#D7FF5F" stroke-width="9" stroke-linecap="round" pathLength="100" stroke-dasharray="17.20 100" transform="rotate(-90 388 140)" />
+  <circle cx="388" cy="140" r="46" fill="none" stroke="#D7FF5F" stroke-width="9" stroke-linecap="round" pathLength="100" stroke-dasharray="18.00 100" transform="rotate(-90 388 140)" />
   <text x="388" y="151" text-anchor="middle" font-size="34" font-weight="700">SS</text>
   <text x="520" y="44" class="title">Most Used Languages</text>
   <defs><clipPath id="language-bar"><rect x="520" y="64" width="408" height="8" rx="4" /></clipPath></defs>
-  <g clip-path="url(#language-bar)"><rect x="520.00" y="64" width="192.35" height="8" fill="#A855F7" /><rect x="712.35" y="64" width="125.34" height="8" fill="#D7FF5F" /><rect x="837.69" y="64" width="25.83" height="8" fill="#B779FF" /><rect x="863.52" y="64" width="19.80" height="8" fill="#FDE047" /><rect x="883.33" y="64" width="18.59" height="8" fill="#FB7185" /><rect x="901.91" y="64" width="16.06" height="8" fill="#FF4D8D" /><rect x="917.97" y="64" width="7.65" height="8" fill="#8B5CF6" /><rect x="925.62" y="64" width="2.38" height="8" fill="#E879F9" /></g>
-  <circle cx="525" cy="103" r="5" fill="#A855F7" /><text x="540" y="108" class="language">TypeScript 47.15%</text>
-  <circle cx="525" cy="135" r="5" fill="#D7FF5F" /><text x="540" y="140" class="language">Python 30.72%</text>
-  <circle cx="525" cy="167" r="5" fill="#B779FF" /><text x="540" y="172" class="language">C++ 6.33%</text>
-  <circle cx="525" cy="199" r="5" fill="#FDE047" /><text x="540" y="204" class="language">JavaScript 4.85%</text>
-  <circle cx="753" cy="103" r="5" fill="#FB7185" /><text x="768" y="108" class="language">Java 4.56%</text>
-  <circle cx="753" cy="135" r="5" fill="#FF4D8D" /><text x="768" y="140" class="language">Rust 3.94%</text>
-  <circle cx="753" cy="167" r="5" fill="#8B5CF6" /><text x="768" y="172" class="language">C 1.87%</text>
-  <circle cx="753" cy="199" r="5" fill="#E879F9" /><text x="768" y="204" class="language">Kotlin 0.58%</text>
+  <g clip-path="url(#language-bar)"><rect x="520.00" y="64" width="185.99" height="8" fill="#D7FF5F" /><rect x="705.99" y="64" width="182.81" height="8" fill="#A855F7" /><rect x="888.80" y="64" width="11.13" height="8" fill="#B779FF" /><rect x="899.94" y="64" width="8.73" height="8" fill="#FDE047" /><rect x="908.67" y="64" width="8.01" height="8" fill="#FB7185" /><rect x="916.68" y="64" width="6.92" height="8" fill="#FF4D8D" /><rect x="923.60" y="64" width="3.30" height="8" fill="#8B5CF6" /><rect x="926.90" y="64" width="1.10" height="8" fill="#FDE047" /></g>
+  <circle cx="525" cy="103" r="5" fill="#D7FF5F" /><text x="540" y="108" class="language">Python 45.59%</text>
+  <circle cx="525" cy="135" r="5" fill="#A855F7" /><text x="540" y="140" class="language">TypeScript 44.81%</text>
+  <circle cx="525" cy="167" r="5" fill="#B779FF" /><text x="540" y="172" class="language">C++ 2.73%</text>
+  <circle cx="525" cy="199" r="5" fill="#FDE047" /><text x="540" y="204" class="language">JavaScript 2.14%</text>
+  <circle cx="753" cy="103" r="5" fill="#FB7185" /><text x="768" y="108" class="language">Java 1.96%</text>
+  <circle cx="753" cy="135" r="5" fill="#FF4D8D" /><text x="768" y="140" class="language">Rust 1.70%</text>
+  <circle cx="753" cy="167" r="5" fill="#8B5CF6" /><text x="768" y="172" class="language">C 0.81%</text>
+  <circle cx="753" cy="199" r="5" fill="#FDE047" /><text x="768" y="204" class="language">Shell 0.27%</text>
 </svg>
