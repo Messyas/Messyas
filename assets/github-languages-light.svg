@@ -3,15 +3,15 @@
   <rect x="0.75" y="0.75" width="298.5" height="178.5" rx="5" fill="#FAF5FF" stroke="#D8B4FE" stroke-width="1.5" />
   <text x="20" y="39" class="title">Most Used Languages</text>
   <clipPath id="bar-clip"><rect x="20" y="55" width="260" height="8" rx="4" /></clipPath>
-  <g clip-path="url(#bar-clip)"><rect x="20.00" y="0" width="118.52" height="8" fill="#D7FF5F" /><rect x="138.52" y="0" width="116.50" height="8" fill="#A855F7" /><rect x="255.02" y="0" width="7.09" height="8" fill="#B779FF" /><rect x="262.12" y="0" width="5.57" height="8" fill="#FDE047" /><rect x="267.68" y="0" width="5.10" height="8" fill="#FB7185" /><rect x="272.79" y="0" width="4.41" height="8" fill="#FF4D8D" /><rect x="277.20" y="0" width="2.10" height="8" fill="#8B5CF6" /><rect x="279.30" y="0" width="0.70" height="8" fill="#FDE047" /></g>
+  <g clip-path="url(#bar-clip)"><rect x="20.00" y="0" width="118.49" height="8" fill="#D7FF5F" /><rect x="138.49" y="0" width="116.46" height="8" fill="#A855F7" /><rect x="254.96" y="0" width="7.09" height="8" fill="#B779FF" /><rect x="262.05" y="0" width="5.64" height="8" fill="#FDE047" /><rect x="267.68" y="0" width="5.10" height="8" fill="#FB7185" /><rect x="272.79" y="0" width="4.41" height="8" fill="#FF4D8D" /><rect x="277.20" y="0" width="2.10" height="8" fill="#8B5CF6" /><rect x="279.30" y="0" width="0.70" height="8" fill="#FDE047" /></g>
   <circle cx="20" cy="84" r="5" fill="#D7FF5F" />
-      <text x="31" y="88" class="language">Python 45.59%</text>
+      <text x="31" y="88" class="language">Python 45.57%</text>
 <circle cx="20" cy="105" r="5" fill="#A855F7" />
-      <text x="31" y="109" class="language">TypeScript 44.81%</text>
+      <text x="31" y="109" class="language">TypeScript 44.79%</text>
 <circle cx="20" cy="126" r="5" fill="#B779FF" />
       <text x="31" y="130" class="language">C++ 2.73%</text>
 <circle cx="20" cy="147" r="5" fill="#FDE047" />
-      <text x="31" y="151" class="language">JavaScript 2.14%</text>
+      <text x="31" y="151" class="language">JavaScript 2.17%</text>
 <circle cx="158" cy="84" r="5" fill="#FB7185" />
       <text x="169" y="88" class="language">Java 1.96%</text>
 <circle cx="158" cy="105" r="5" fill="#FF4D8D" />
