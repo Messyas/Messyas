@@ -11,9 +11,9 @@
   <path d="M480 32v176" stroke="#D8B4FE" />
   <text x="32" y="44" class="title">GitHub Stats</text>
   <g transform="translate(32 76)" class="icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m10 1 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L10 15.3l-5.6 2.9 1.1-6.2L1 7.6l6.2-.9Z" fill="currentColor" stroke="none" /></g>
-  <text x="66" y="92" class="label">Total Stars:</text><text x="290" y="92" class="value">3</text>
+  <text x="66" y="92" class="label">Total Stars:</text><text x="290" y="92" class="value">2</text>
   <g transform="translate(32 112)" class="icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7a7 7 0 1 0 1 6M16 2v5h-5" /></g>
-  <text x="66" y="128" class="label">Total Commits:</text><text x="290" y="128" class="value">1499</text>
+  <text x="66" y="128" class="label">Total Commits:</text><text x="290" y="128" class="value">1519</text>
   <g transform="translate(32 148)" class="icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="4" r="2" /><circle cx="5" cy="16" r="2" /><circle cx="15" cy="16" r="2" /><path d="M5 6v8m5-11h2a3 3 0 0 1 3 3v8m-5-11 3-2m-3 2 3 2" /></g>
   <text x="66" y="164" class="label">Total PRs:</text><text x="290" y="164" class="value">103</text>
   <g transform="translate(32 184)" class="icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8" /><path d="M10 5v6m0 3v1" /></g>
@@ -23,13 +23,13 @@
   <text x="388" y="151" text-anchor="middle" font-size="34" font-weight="700">SS</text>
   <text x="520" y="44" class="title">Most Used Languages</text>
   <defs><clipPath id="language-bar"><rect x="520" y="64" width="408" height="8" rx="4" /></clipPath></defs>
-  <g clip-path="url(#language-bar)"><rect x="520.00" y="64" width="185.93" height="8" fill="#D7FF5F" /><rect x="705.93" y="64" width="182.75" height="8" fill="#A855F7" /><rect x="888.68" y="64" width="11.13" height="8" fill="#B779FF" /><rect x="899.81" y="64" width="8.86" height="8" fill="#FDE047" /><rect x="908.68" y="64" width="8.01" height="8" fill="#FB7185" /><rect x="916.68" y="64" width="6.92" height="8" fill="#FF4D8D" /><rect x="923.60" y="64" width="3.30" height="8" fill="#8B5CF6" /><rect x="926.90" y="64" width="1.10" height="8" fill="#FDE047" /></g>
-  <circle cx="525" cy="103" r="5" fill="#D7FF5F" /><text x="540" y="108" class="language">Python 45.57%</text>
-  <circle cx="525" cy="135" r="5" fill="#A855F7" /><text x="540" y="140" class="language">TypeScript 44.79%</text>
-  <circle cx="525" cy="167" r="5" fill="#B779FF" /><text x="540" y="172" class="language">C++ 2.73%</text>
-  <circle cx="525" cy="199" r="5" fill="#FDE047" /><text x="540" y="204" class="language">JavaScript 2.17%</text>
-  <circle cx="753" cy="103" r="5" fill="#FB7185" /><text x="768" y="108" class="language">Java 1.96%</text>
-  <circle cx="753" cy="135" r="5" fill="#FF4D8D" /><text x="768" y="140" class="language">Rust 1.70%</text>
-  <circle cx="753" cy="167" r="5" fill="#8B5CF6" /><text x="768" y="172" class="language">C 0.81%</text>
-  <circle cx="753" cy="199" r="5" fill="#FDE047" /><text x="768" y="204" class="language">Shell 0.27%</text>
+  <g clip-path="url(#language-bar)"><rect x="520.00" y="64" width="192.60" height="8" fill="#A855F7" /><rect x="712.60" y="64" width="123.39" height="8" fill="#D7FF5F" /><rect x="835.99" y="64" width="26.24" height="8" fill="#B779FF" /><rect x="862.23" y="64" width="20.39" height="8" fill="#FDE047" /><rect x="882.62" y="64" width="18.88" height="8" fill="#FB7185" /><rect x="901.50" y="64" width="16.31" height="8" fill="#FF4D8D" /><rect x="917.81" y="64" width="7.77" height="8" fill="#8B5CF6" /><rect x="925.58" y="64" width="2.42" height="8" fill="#E879F9" /></g>
+  <circle cx="525" cy="103" r="5" fill="#A855F7" /><text x="540" y="108" class="language">TypeScript 47.21%</text>
+  <circle cx="525" cy="135" r="5" fill="#D7FF5F" /><text x="540" y="140" class="language">Python 30.24%</text>
+  <circle cx="525" cy="167" r="5" fill="#B779FF" /><text x="540" y="172" class="language">C++ 6.43%</text>
+  <circle cx="525" cy="199" r="5" fill="#FDE047" /><text x="540" y="204" class="language">JavaScript 5.00%</text>
+  <circle cx="753" cy="103" r="5" fill="#FB7185" /><text x="768" y="108" class="language">Java 4.63%</text>
+  <circle cx="753" cy="135" r="5" fill="#FF4D8D" /><text x="768" y="140" class="language">Rust 4.00%</text>
+  <circle cx="753" cy="167" r="5" fill="#8B5CF6" /><text x="768" y="172" class="language">C 1.90%</text>
+  <circle cx="753" cy="199" r="5" fill="#E879F9" /><text x="768" y="204" class="language">Kotlin 0.59%</text>
 </svg>
