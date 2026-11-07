@@ -3,21 +3,21 @@
   <rect x="0.75" y="0.75" width="298.5" height="178.5" rx="5" fill="#0D0814" stroke="#3D105B" stroke-width="1.5" />
   <text x="20" y="39" class="title">Most Used Languages</text>
   <clipPath id="bar-clip"><rect x="20" y="55" width="260" height="8" rx="4" /></clipPath>
-  <g clip-path="url(#bar-clip)"><rect x="20.00" y="0" width="122.74" height="8" fill="#A855F7" /><rect x="142.74" y="0" width="78.63" height="8" fill="#D7FF5F" /><rect x="221.37" y="0" width="16.72" height="8" fill="#B779FF" /><rect x="238.09" y="0" width="12.99" height="8" fill="#FDE047" /><rect x="251.08" y="0" width="12.03" height="8" fill="#FB7185" /><rect x="263.11" y="0" width="10.40" height="8" fill="#FF4D8D" /><rect x="273.51" y="0" width="4.95" height="8" fill="#8B5CF6" /><rect x="278.46" y="0" width="1.54" height="8" fill="#E879F9" /></g>
+  <g clip-path="url(#bar-clip)"><rect x="20.00" y="0" width="120.12" height="8" fill="#A855F7" /><rect x="140.12" y="0" width="82.50" height="8" fill="#D7FF5F" /><rect x="222.62" y="0" width="16.37" height="8" fill="#B779FF" /><rect x="238.98" y="0" width="12.72" height="8" fill="#FDE047" /><rect x="251.70" y="0" width="11.77" height="8" fill="#FB7185" /><rect x="263.47" y="0" width="10.17" height="8" fill="#FF4D8D" /><rect x="273.65" y="0" width="4.85" height="8" fill="#8B5CF6" /><rect x="278.49" y="0" width="1.51" height="8" fill="#E879F9" /></g>
   <circle cx="20" cy="84" r="5" fill="#A855F7" />
-      <text x="31" y="88" class="language">TypeScript 47.21%</text>
+      <text x="31" y="88" class="language">TypeScript 46.20%</text>
 <circle cx="20" cy="105" r="5" fill="#D7FF5F" />
-      <text x="31" y="109" class="language">Python 30.24%</text>
+      <text x="31" y="109" class="language">Python 31.73%</text>
 <circle cx="20" cy="126" r="5" fill="#B779FF" />
-      <text x="31" y="130" class="language">C++ 6.43%</text>
+      <text x="31" y="130" class="language">C++ 6.29%</text>
 <circle cx="20" cy="147" r="5" fill="#FDE047" />
-      <text x="31" y="151" class="language">JavaScript 5.00%</text>
+      <text x="31" y="151" class="language">JavaScript 4.89%</text>
 <circle cx="158" cy="84" r="5" fill="#FB7185" />
-      <text x="169" y="88" class="language">Java 4.63%</text>
+      <text x="169" y="88" class="language">Java 4.53%</text>
 <circle cx="158" cy="105" r="5" fill="#FF4D8D" />
-      <text x="169" y="109" class="language">Rust 4.00%</text>
+      <text x="169" y="109" class="language">Rust 3.91%</text>
 <circle cx="158" cy="126" r="5" fill="#8B5CF6" />
-      <text x="169" y="130" class="language">C 1.90%</text>
+      <text x="169" y="130" class="language">C 1.86%</text>
 <circle cx="158" cy="147" r="5" fill="#E879F9" />
-      <text x="169" y="151" class="language">Kotlin 0.59%</text>
+      <text x="169" y="151" class="language">Kotlin 0.58%</text>
 </svg>
